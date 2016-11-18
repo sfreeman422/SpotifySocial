@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Controller section
-//app.use('/', controllers);
+app.use('/', mainControl);
 
 //Forwards errors to the Error Handler
 app.use(function(req, res, next){
