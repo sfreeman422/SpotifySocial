@@ -10,10 +10,13 @@ var methodOverride = require('method-override');
 var hbs = require('express-handlebars');
 var request = require('request');
 var queryString = require('querystring');
+var sequelize = require('sequelize');
+var mysql = require('mysql');
+var models = require('./models');
 var port = 3000 || process.env.PORT; 
 
 //Controllers
-//This section will eventually import the controller whcih holds our routes
+var mainControl = require('./controllers/mainControl.js');
 
 //Express settings
 //=========================================//
@@ -35,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Controller section
+//Controller Routing
 app.use('/', mainControl);
 
 //Forwards errors to the Error Handler
@@ -54,9 +57,10 @@ app.use(function(err, res, next){
 	})
 })
 
-app.listen(port, function(){
-	console.log("Listening on port: "+port);
+models.sequelize.sync({force: true}).then(function(){
+	app.listen(port, function(){
+		console.log("Listening on port: "+port);
+	})
 });
-//Sequelize stuff goes here. 
 
 module.exports = app; 
