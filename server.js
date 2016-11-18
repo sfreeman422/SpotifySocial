@@ -17,6 +17,7 @@ var port = 3000 || process.env.PORT;
 
 //Controllers
 var mainControl = require('./controllers/mainControl.js');
+var spotifyControl = require('./controllers/spotifyControl.js');
 
 //Express settings
 //=========================================//
@@ -40,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Controller Routing
 app.use('/', mainControl);
+app.use('/login', spotifyControl)
 
 //Forwards errors to the Error Handler
 app.use(function(req, res, next){
