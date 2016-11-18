@@ -36,6 +36,9 @@ var app = express();
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
+app.get('/', function(req, res){
+  res.send("This section should include a login link if you are not logged in. If you are, it should show your profile information.");
+});
 
 // Need to review all these routes.
 app.get('/login', function(req, res) {

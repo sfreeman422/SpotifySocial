@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Controller Routing
 app.use('/', mainControl);
-app.use('/login', spotifyControl)
+app.use('/profile', spotifyControl)
 
 //Forwards errors to the Error Handler
 app.use(function(req, res, next){
