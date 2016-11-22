@@ -33,19 +33,19 @@ h2{
     font-size: 100px;
 }
 h4{
-    color: orange;
-    font-size: 30px;
+    color: purple;
+    font-size: 50px;
 }
 h5{
-  color:purple;
-  font-size: 50px;
+    color: purple;
+    font-size: 20px;
 }
 h6{
     color: orange;
     font-size: 25px;
 }
 .white {
-    background-color: purple !important;
+    background-color: white !important;
 }
 .btn-large {
     height: 54px;
@@ -63,10 +63,21 @@ h6{
   height: auto;
   color: purple;
 }
-  .parallax-container .section {
+.parallax-container .section {
     width: 100%;
-  }
-
+}
+.purple-text.text-darken-2 {
+    color: orange !important;
+}
+.input-field label {
+    color: orange;
+    position: absolute;
+    top: 0.8rem;
+    left: 0;
+    font-size: 20px;
+    cursor: text;
+    transition: .2s ease-out;
+}
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
