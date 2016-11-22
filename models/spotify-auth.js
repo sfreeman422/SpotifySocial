@@ -8,13 +8,6 @@ var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var app = express();
-var PORT = 3000;
-app.listen(PORT, function () {
-  console.log('App listening on PORT ' + PORT);
-});
-
-
 // These are our team's  Spotify app credentials.   These should be kept secret by not putting the server.js  file in the public folder.
 var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
 var client_secret = '23324134048446d6a40c8599dd00ab2d'; // Your secret
@@ -126,7 +119,6 @@ app.get('/callback', function(req, res) {
   }
 });
 
-
 // access tokens are set to expire --  the refresh will get a new token
 app.get('/refresh_token', function(req, res) {
 
@@ -151,7 +143,3 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
-
-
-
-
