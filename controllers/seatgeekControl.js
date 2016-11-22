@@ -1,66 +1,63 @@
-$(document).ready(function() {
+// var performer = 'grouplove';
 
-var performer = 'grouplove';
+// function gatherConcertInfo(){
 
-function gatherConcertInfo(){
+//   var queryURL = 'https://api.seatgeek.com/2/events?performers.slug='+performer+'&client_id=NjIzMjUyMXwxNDc5NDI2Nzkz&client_secret=zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
 
-  var queryURL = 'https://api.seatgeek.com/2/events?performers.slug='+performer+'&client_id=NjIzMjUyMXwxNDc5NDI2Nzkz&client_secret=zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
+//   $.ajax({
+//     url:queryURL,
+//     method:'GET'
+//     })
+//     .done(function(response){
 
-  $.ajax({
-    url:queryURL,
-    method:'GET'
-    })
-    .done(function(response){
+//       console.log(response);
 
-      console.log(response);
+//       for (i=0; i < response.events.length; i++) {
 
-      for (i=0; i < response.events.length; i++) {
-
-        var concertDiv = $('<div class="concertInfo">');
+//         var concertDiv = $('<div class="concertInfo">');
 
 
-        var img = $('<img>');
+//         var img = $('<img>');
 
-        img.attr("src", response.events[i].performers[0].image);
+//         img.attr("src", response.events[i].performers[0].image);
 
-        img.addClass('eventImg');
+//         img.addClass('eventImg');
 
-        concertDiv.append(img);
-
-
-        var performer = response.events[i].performers[0].name;
-
-        var p = $('<p>').text("Performer: " + performer);
-
-        p.addClass('performer');
-
-        concertDiv.append(p);
+//         concertDiv.append(img);
 
 
-        var venue = response.events[i].venue.name;
+//         var performer = response.events[i].performers[0].name;
 
-        var v = $('<p>').text("Venue: " + venue);
+//         var p = $('<p>').text("Performer: " + performer);
 
-        v.addClass('venue');
+//         p.addClass('performer');
 
-        concertDiv.append(v);
-
-
-        var link = response.events[i].url
-
-        var urlLink = $('<a>').text('Buy Tickets');
-
-        urlLink.attr('href', link);
-
-        concertDiv.append(urlLink);
+//         concertDiv.append(p);
 
 
-        $('#eventsView').prepend(concertDiv);
+//         var venue = response.events[i].venue.name;
 
-    }
+//         var v = $('<p>').text("Venue: " + venue);
 
-    });
-  };
+//         v.addClass('venue');
 
-  gatherConcertInfo();
-});
+//         concertDiv.append(v);
+
+
+//         var link = response.events[i].url
+
+//         var urlLink = $('<a>').text('Buy Tickets');
+
+//         urlLink.attr('href', link);
+
+//         concertDiv.append(urlLink);
+
+
+//         $('#eventsView').prepend(concertDiv);
+
+//     }
+
+//     });
+//   };
+
+//   gatherConcertInfo();
