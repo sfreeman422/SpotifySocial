@@ -13,7 +13,7 @@ var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
 var client_secret = '23324134048446d6a40c8599dd00ab2d'; // Your secret
 // We need to put a redirect URL in here later.  Wherever our app's homepage is hosted,  or the URL of the authenticated user landing page
 // THIS IS A REQUIRED PARAMETER FOR THE API.  WE HAVE TO SET IT.
-var redirect_uri = 'localhost:3000/callback';
+var redirect_uri = 'http://localhost:3000/dummycallback.html';
 
 // Generates a random string containing numbers and letters
 //  * @param  {number} length The length of the string
@@ -22,7 +22,6 @@ var redirect_uri = 'localhost:3000/callback';
 var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
   for (var i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
@@ -36,9 +35,6 @@ var app = express();
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
-app.get('/', function(req, res){
-  res.send("This section should include a login link if you are not logged in. If you are, it should show your profile information.");
-});
 
 // Need to review all these routes.
 app.get('/login', function(req, res) {
@@ -110,13 +106,13 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        res.redirect('/index.html' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
           }));
       } else {
-        res.redirect('/#' +
+        res.redirect('/index.html' +
           querystring.stringify({
             error: 'invalid_token'
           }));
@@ -124,7 +120,6 @@ app.get('/callback', function(req, res) {
     });
   }
 });
-
 
 // access tokens are set to expire --  the refresh will get a new token
 app.get('/refresh_token', function(req, res) {
@@ -150,6 +145,5 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
-
 
 module.exports = app; 

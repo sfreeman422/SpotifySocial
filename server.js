@@ -20,6 +20,7 @@ var mainControl = require('./controllers/mainControl.js');
 var spotifyControl = require('./controllers/spotifyControl.js');
 var profileControl = require('./controllers/profileControl.js');
 var seatgeekControl = require('./controllers/seatgeekControl.js');
+
 //Express settings
 //=========================================//
 var app = express();
