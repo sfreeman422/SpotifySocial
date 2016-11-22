@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Controller Routing
 app.use('/', mainControl);
-app.use('/profile/login', spotifyControl);
+app.use('/profile', spotifyControl);
 //app.use('/profile', seatgeekControl);
 app.use('/callback', profileControl);
 
