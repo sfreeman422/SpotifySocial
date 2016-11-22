@@ -23,26 +23,34 @@ p {
   font-family: 'Original Surfer';
 }
 html {
-    line-height: 1.5;
-    font-family: 'Wendy One';
-    font-weight: normal;
-    color: purple;
+  line-height: 1.5;
+  font-family: 'Wendy One';
+  font-weight: normal;
+   color: purple;
 }
 h2{
-    color: orange;
-    font-size: 100px;
+  color: orange;
+  font-size: 100px;
 }
 h4{
-    color: orange;
-    font-size: 30px;
+  color: orange;
+  font-size: 30px;
 }
 h5{
   color:purple;
   font-size: 50px;
 }
 h6{
-    color: orange;
-    font-size: 25px;
+  color: orange;
+  font-size: 25px;
+}
+h7{
+  color: purple;
+  font-size: 20px;
+}
+h8{
+  color: orange;
+  font-size: 50px;
 }
 .white {
     background-color: purple !important;
