@@ -8,12 +8,19 @@ var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
+var app = express();
+var PORT = 3000;
+app.listen(PORT, function () {
+  console.log('App listening on PORT ' + PORT);
+});
+
+
 // These are our team's  Spotify app credentials.   These should be kept secret by not putting the server.js  file in the public folder.
 var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
 var client_secret = '23324134048446d6a40c8599dd00ab2d'; // Your secret
 // We need to put a redirect URL in here later.  Wherever our app's homepage is hosted,  or the URL of the authenticated user landing page
 // THIS IS A REQUIRED PARAMETER FOR THE API.  WE HAVE TO SET IT.
-var redirect_uri = 'localhost:3000/callback';
+var redirect_uri = 'http://localhost:3000/dummycallback.html';
 
 // Generates a random string containing numbers and letters
 //  * @param  {number} length The length of the string
@@ -22,7 +29,6 @@ var redirect_uri = 'localhost:3000/callback';
 var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
   for (var i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
@@ -30,8 +36,6 @@ var generateRandomString = function(length) {
 };
 
 var stateKey = 'spotify_auth_state';
-
-var app = express();
 
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
@@ -107,13 +111,13 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        res.redirect('/index.html' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
           }));
       } else {
-        res.redirect('/#' +
+        res.redirect('/index.html' +
           querystring.stringify({
             error: 'invalid_token'
           }));
@@ -149,5 +153,5 @@ app.get('/refresh_token', function(req, res) {
 });
 
 
-console.log('Listening on 3000');
-app.listen(3000);
+
+
