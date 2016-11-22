@@ -18,7 +18,8 @@ var port = 3000 || process.env.PORT;
 //Controllers
 var mainControl = require('./controllers/mainControl.js');
 var spotifyControl = require('./controllers/spotifyControl.js');
-
+var profileControl = require('./controllers/profileControl.js');
+var seatgeekControl = require('./controllers/seatgeekControl.js');
 //Express settings
 //=========================================//
 var app = express();
@@ -41,7 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Controller Routing
 app.use('/', mainControl);
-app.use('/profile', spotifyControl)
+app.use('/profile/login', spotifyControl);
+app.use('/profile', seatgeekControl);
+app.use('/callback', profileControl);
 
 //Forwards errors to the Error Handler
 app.use(function(req, res, next){
