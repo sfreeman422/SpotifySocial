@@ -10,7 +10,15 @@ var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
 var client_secret = '23324134048446d6a40c8599dd00ab2d'; // Your secret
 // We need to put a redirect URL in here later.  Wherever our app's homepage is hosted,  or the URL of the authenticated user landing page
 // THIS IS A REQUIRED PARAMETER FOR THE API.
-var redirect_uri = 'http://localhost:3000/dummycallback.html';
+var redirect_uri = 'http://localhost:3000/profile/callback';
+
+
+// ------USER  OBJECT VARIABLES --   created globally 
+var userDisplayName = "";
+var userID = "";
+
+
+
 
 // Generates a random string containing numbers and letters
 //  * @param  {number} length The length of the string
@@ -50,12 +58,15 @@ app.get('/login', function(req, res) {
       client_id: client_id,
       scope: scope,
       redirect_uri: redirect_uri,
-      // state: state
+      state: state
     }));
+
+
 });
 
-// This is the redirect route.  We'll need to set it to wherever we are sending the user after they authenticate successfully.
+
 app.get('/callback', function(req, res) {
+
 
   // request refresh and access tokens
   // after checking the state parameter
@@ -104,15 +115,22 @@ app.get('/callback', function(req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          console.log(body);
+
+
+          userDisplayName = body.display_name;
+          userID = body.id;
+
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/index.html' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+        res.redirect('/survey.html'
+          // +
+          // querystring.stringify({
+          //   access_token: access_token,
+          //   refresh_token: refresh_token
+          // })
+
+          );
       } else {
         res.redirect('/index.html' +
           querystring.stringify({
@@ -147,5 +165,12 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
+
+  
+
+
+
+
+
 
 module.exports = app; 
