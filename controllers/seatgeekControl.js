@@ -20,7 +20,6 @@ function getID(queryURL){
 		request(queryURL, function(err, resp, body){
 			if(!err && resp.statusCode == 200){
 				console.log(body.performers[0].id);
-				//console.log("Artist ID for "+body.performers.name+" is :"+fullBody.id);
 			}
 			else{
 				console.log(err);
