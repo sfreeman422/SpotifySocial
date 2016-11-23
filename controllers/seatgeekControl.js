@@ -10,8 +10,8 @@ router.get('/', function(req, res){
 
 	var performers = ['Against-me', 'Bad-Religion', 'Grouplove'];
 	var performerQuery = ''; 
-	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
-	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC'
+
+	
 	for(var i = 0; i < performers.length; i++){
 		//Used to determine when we are at the end of the array. 
 		var arrLength = performers.length-1; 
@@ -32,7 +32,8 @@ router.get('/', function(req, res){
 		else{
 			performerQuery += artist; 
 		}
-	}.then()
+		return performerQuery;
+	}.then(function(answer) {
 
 	//END DATA PULL FROM DATABASE. QUERY STRING COMPLETE as PERFORMERQUERY
 	
@@ -42,19 +43,22 @@ router.get('/', function(req, res){
 	
 	//BEGIN API CALL 
 	//=======================================================================================
+	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
+	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC'
 
-
-	request('https://api.seatgeek.com/2/events?performers.slug='+performerQuery+'&client_id='+clientID+'&client_secret='+clientSecret, function(err, resp, body){
+	request('https://api.seatgeek.com/2/events?performers.slug='+answer+'&client_id='+clientID+'&client_secret='+clientSecret, function(err, resp, body){
 		if (!err && resp.statusCode == 200) {
     		console.log(body)
   		}
   		else{
   			console.log(err);
   		}
+
 	});
 
-
-console.log(performerQuery);
+});	
 });
+
+
 
 module.exports = router; 
