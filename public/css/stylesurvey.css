@@ -28,6 +28,10 @@ html {
     font-weight: normal;
     color: purple;
 }
+h1{
+  color: purple;
+  font-size: 50px;
+}
 h2{
     color: orange;
     font-size: 100px;
@@ -38,14 +42,27 @@ h4{
 }
 h5{
     color: purple;
-    font-size: 20px;
+    font-size: 40px;
 }
 h6{
     color: orange;
     font-size: 25px;
 }
+
 .white {
     background-color: white !important;
+}
+.orange {
+    background-color: orange !important;
+    width: 800px;
+}
+.card-panel {
+  padding: 20px;
+  margin: 2% 8% 2% 8%;
+}
+div {
+    display: block;
+    width: auto;
 }
 .btn-large {
     height: 54px;
@@ -68,13 +85,14 @@ h6{
 }
 .purple-text.text-darken-2 {
     color: orange !important;
+    font-size: 20px;
 }
 .input-field label {
     color: orange;
     position: absolute;
     top: 0.8rem;
     left: 0;
-    font-size: 20px;
+    font-size: 25px;
     cursor: text;
     transition: .2s ease-out;
 }
