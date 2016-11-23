@@ -1,9 +1,16 @@
 var models = require('../models');
 var express = require('express');
 var router = express.Router();
-
 var request = require('request');
 
+
+//Steps to get this working:
+//1. Hit the '/' route. Status: WORKING
+//2. Initiate getInfo() function to search the database (array currently) for the users top artists Status: WORKING
+//3. For each artist in the database, pass the queryURL to getID() Status: WORKING
+//4. Inside of getID, submit the request to the API Status: WORKING
+//5. Search the body for the performer ID STATUS: BROKEN
+//6. Add the performer ID to the database. Status: BROKEN
 
 //Route upon hitting hte seatgeek route. 
 router.get('/', function(req, res){
