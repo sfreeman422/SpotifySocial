@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
 
 		classMethods: {
 			associate: function(models) {
-				Users.belongsTo(models.Users, {
+				Concerts.belongsTo(models.Users, {
 					onDelete: "CASCADE",
 					foreignKey: {
 						allowNull: false
