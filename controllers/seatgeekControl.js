@@ -66,8 +66,10 @@ function makeRequest(performerQuery){
   		}
 	});
 }
-
+//We are calling getInfo to determine how we can get the IDs to store in the database.
 getInfo();
+
+//Once we have getInfo figured out, we will be able to call the makeRequest to actualy grab the concerts. 
 //makeRequest(getInfo());
 
 });
