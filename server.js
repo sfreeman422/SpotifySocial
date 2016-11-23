@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Controller Routing
 app.use('/', mainControl);
 app.use('/profile', spotifyControl);
-//app.use('/profile', seatgeekControl);
+app.use('/seatgeek', seatgeekControl);
 app.use('/callback', profileControl);
 
 //Forwards errors to the Error Handler

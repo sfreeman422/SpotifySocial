@@ -1,63 +1,60 @@
-// var performer = 'grouplove';
+var models = require('../models');
+var express = require('express');
+var router = express.Router();
 
-// function gatherConcertInfo(){
+var request = require('request');
 
-//   var queryURL = 'https://api.seatgeek.com/2/events?performers.slug='+performer+'&client_id=NjIzMjUyMXwxNDc5NDI2Nzkz&client_secret=zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
+router.get('/', function(req, res){
+	//BEGIN DATA PULL FROM DATABASE AND ADD TO QUERY STRING
+	//======================================================================================
 
-//   $.ajax({
-//     url:queryURL,
-//     method:'GET'
-//     })
-//     .done(function(response){
+	var performers = ['Against-me', 'Bad-Religion', 'Grouplove'];
+	var performerQuery = ''; 
+	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
+	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC'
+	for(var i = 0; i < performers.length; i++){
+		//Used to determine when we are at the end of the array. 
+		var arrLength = performers.length-1; 
+		//For loop to go through the array and add the artists to the performerQuery which we will
+		//Then feed to the API.
+		for(var j = 0; j < performers[i].length; j++){
+			//Sets up a new string that includes the string from the array. 
+			var artist = performers[i];
+			if(artist.charAt(j) == " "){
+				console.log("This string has a space.");
+			}
+		}
+		//Adds the performer and a plus if we are not at the end of the array. 
+		if(i != arrLength){
+			performerQuery += artist+'&performers=';
+		}
+		//Adds just the artist if we are at the end of the array. 
+		else{
+			performerQuery += artist; 
+		}
+	}.then()
 
-//       console.log(response);
-
-//       for (i=0; i < response.events.length; i++) {
-
-//         var concertDiv = $('<div class="concertInfo">');
-
-
-//         var img = $('<img>');
-
-//         img.attr("src", response.events[i].performers[0].image);
-
-//         img.addClass('eventImg');
-
-//         concertDiv.append(img);
-
-
-//         var performer = response.events[i].performers[0].name;
-
-//         var p = $('<p>').text("Performer: " + performer);
-
-//         p.addClass('performer');
-
-//         concertDiv.append(p);
-
-
-//         var venue = response.events[i].venue.name;
-
-//         var v = $('<p>').text("Venue: " + venue);
-
-//         v.addClass('venue');
-
-//         concertDiv.append(v);
-
-
-//         var link = response.events[i].url
-
-//         var urlLink = $('<a>').text('Buy Tickets');
-
-//         urlLink.attr('href', link);
-
-//         concertDiv.append(urlLink);
+	//END DATA PULL FROM DATABASE. QUERY STRING COMPLETE as PERFORMERQUERY
+	
+	//=======================================================================================
+	//=======================================================================================
+	//=======================================================================================
+	
+	//BEGIN API CALL 
+	//=======================================================================================
 
 
-//         $('#eventsView').prepend(concertDiv);
+	request('https://api.seatgeek.com/2/events?performers.slug='+performerQuery+'&client_id='+clientID+'&client_secret='+clientSecret, function(err, resp, body){
+		if (!err && resp.statusCode == 200) {
+    		console.log(body)
+  		}
+  		else{
+  			console.log(err);
+  		}
+	});
 
-//     }
 
-//     });
-//   };
+console.log(performerQuery);
+});
 
-//   gatherConcertInfo();
+module.exports = router; 
