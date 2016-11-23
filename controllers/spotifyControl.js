@@ -1,8 +1,5 @@
 // This is the basic code for the OAuth2 flow to authenticate against Spotify accounts.
 
-// I built this as a standalone app file,  need to remove some of these dependencies and the port at the end of the file
-
-
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
@@ -12,8 +9,8 @@ var cookieParser = require('cookie-parser');
 var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
 var client_secret = '23324134048446d6a40c8599dd00ab2d'; // Your secret
 // We need to put a redirect URL in here later.  Wherever our app's homepage is hosted,  or the URL of the authenticated user landing page
-// THIS IS A REQUIRED PARAMETER FOR THE API.  WE HAVE TO SET IT.
-var redirect_uri = 'localhost:3000/callback';
+// THIS IS A REQUIRED PARAMETER FOR THE API.
+var redirect_uri = 'http://localhost:3000/dummycallback.html';
 
 // Generates a random string containing numbers and letters
 //  * @param  {number} length The length of the string
@@ -22,7 +19,6 @@ var redirect_uri = 'localhost:3000/callback';
 var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
   for (var i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
@@ -37,10 +33,10 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.get('/', function(req, res){
-  res.send("This section should include a login link if you are not logged in. If you are, it should show your profile information.");
-});
+  res.send("This will be a profile page or a log in page depending on log in status. Type localhost:3000/profile/login to hit the spotify login for now.");
+})
 
-// Need to review all these routes.
+
 app.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
@@ -54,12 +50,13 @@ app.get('/login', function(req, res) {
       client_id: client_id,
       scope: scope,
       redirect_uri: redirect_uri,
-      state: state
+      // state: state
     }));
 });
 
 // This is the redirect route.  We'll need to set it to wherever we are sending the user after they authenticate successfully.
 app.get('/callback', function(req, res) {
+
   // request refresh and access tokens
   // after checking the state parameter
 
@@ -93,6 +90,7 @@ app.get('/callback', function(req, res) {
     //  The access token will be used to ping the API for user info,  like favorite artists.
 
     request.post(authOptions, function(error, response, body) {
+
       if (!error && response.statusCode === 200) {
 
         var access_token = body.access_token,
@@ -110,13 +108,13 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        res.redirect('/index.html' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
           }));
       } else {
-        res.redirect('/#' +
+        res.redirect('/index.html' +
           querystring.stringify({
             error: 'invalid_token'
           }));
@@ -124,7 +122,6 @@ app.get('/callback', function(req, res) {
     });
   }
 });
-
 
 // access tokens are set to expire --  the refresh will get a new token
 app.get('/refresh_token', function(req, res) {
@@ -150,6 +147,5 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
-
 
 module.exports = app; 
