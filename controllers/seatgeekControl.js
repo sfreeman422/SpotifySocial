@@ -19,7 +19,8 @@ router.get('/', function(req, res){
 function getID(queryURL){
 		request(queryURL, function(err, resp, body){
 			if(!err && resp.statusCode == 200){
-				console.log(body.performers[0].id);
+				var response = JSON.parse(body)
+				console.log(response.performers[0].id);
 			}
 			else{
 				console.log(err);
@@ -41,7 +42,7 @@ function getInfo(){
 	for(var i = 0; i < performers.length; i++){
 		var artist = performers[i];
 		console.log("Artist being tested is: "+artist);
-		var queryURL = 'https://api.seatgeek.com/2/performers?slug='+artist+'&client_id='+clientID+'&client_secret='+clientSecret
+		var queryURL = 'https://api.seatgeek.com/2/performers?slug='+artist+'&client_id='+clientID+'&client_secret='+clientSecret;
 		console.log("QueryURL is "+queryURL);
 		getID(queryURL);
 	}
