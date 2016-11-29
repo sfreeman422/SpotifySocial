@@ -12,7 +12,9 @@ font-family: 'Wendy One', sans-serif;
 font-family: 'Lato', sans-serif;
 font-family: 'Original Surfer', cursive;
 font-family: 'Play', sans-serif;*/
-
+body{
+  background-scale: 1000px;
+}
 nav ul a,
 nav .brand-logo {
     color:orange;
@@ -21,19 +23,20 @@ nav .brand-logo {
 p {
   line-height: 2rem;
   font-family: 'Original Surfer';
+  color: purple;
 }
 html {
     line-height: 1.5;
     font-family: 'Wendy One';
     font-weight: normal;
-    color: purple;
+    color: orange;
 }
 h1{
-  color: purple;
+  color: orange;
   font-size: 50px;
 }
 h2{
-    color: orange;
+    color: purple;
     font-size: 100px;
 }
 h4{
@@ -45,16 +48,18 @@ h5{
     font-size: 40px;
 }
 h6{
-    color: orange;
+    color: purple;
     font-size: 25px;
 }
-
 .white {
     background-color: white !important;
 }
 .orange {
-    background-color: orange !important;
+    background-color: purple !important;
     width: 800px;
+}
+.purple {
+    background-color: purple !important;
 }
 .card-panel {
   padding: 20px;
@@ -105,13 +110,11 @@ div {
     top: 10%;
   }
 }
-
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
   }
 }
-
 .icon-block {
   padding: 0 15px;
 }
@@ -119,7 +122,6 @@ div {
   font-size: 75px;
   color: purple;
 }
-
 footer.page-footer {
   margin: 0;
 }
