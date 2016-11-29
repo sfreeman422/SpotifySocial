@@ -16,8 +16,10 @@
 </head>
 <body>
 
-<!--<body background="images/tupac2.gif" style="background-height: 40px; background-width:20px">-->
-
+<!--<body background="images/cat.gif" scale="100%">-->
+<!--<div class="container center-align">
+    <img class="" src = "images/cat.gif">
+</div>-->
   <div class='container'>
     <div class='card-panel orange col s12 center'>
       <i class="large material-icons">info</i>
@@ -149,9 +151,8 @@ $(document).ready(function() {
 // FORM COMPLETE //
 
     if(validateForm() == true) {
-      var newFriend = {
-      name: $('#name').val().trim(),
-      favAlbum: $('#album').val().trim(),
+      var newUser = {
+ 
       scores: [
         $('#q1').val(),
         $('#q2').val(),
@@ -159,22 +160,8 @@ $(document).ready(function() {
         $('#q4').val(),
         $('#q5').val(),
         $('#q6').val(),
-        $('#q7').val(),
-        $('#q8').val(),
-        $('#q9').val(),
-        $('#q10').val(),
       ]
-      };
-
-      var currentURL = window.location.origin;
-
-// AJAX //
-
-      $.post(currentURL + "/api/friends", newFriend, function(data){
-        $("matchName").text(data.name);
-        $("matchAlbum").text(data.album);
-
-      });
+ };
 
 // MODAL //
 
@@ -190,14 +177,11 @@ $(document).ready(function() {
         $('#q4').val("");
         $('#q5').val("");
         $('#q6').val("");
-        $('#q7').val("");
-        $('#q8').val("");
-        $('#q9').val("");
-        $('#q10').val("");
+
     } else { 
       alert("Please reply to all tracks before submitting!")
     }
-  });
+});
   return false;
 });
 </script>
