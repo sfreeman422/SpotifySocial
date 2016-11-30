@@ -12,7 +12,9 @@
   <link href="https://fonts.googleapis.com/css?family=Lato|Original+Surfer|Play|Rock+Salt|Slackey|Wendy+One" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/stylesurvey.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 </head>
 <body>
 
@@ -113,29 +115,20 @@
     </div>
   </div>
 
-<!--  Scripts-->
-
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-  </body>
-</html>
-
 <!-- INFO to SERVER -->
 
 <script type="text/javascript">
 
-$(document).ready(function() {
+
   $("#submitBtn").on("click", function(){
 
-// COMPLETED FORM CHECK //
+  console.log("submitBtn");
 
     function validateForm(){
       var isValid = true;
 
       $('.validate').each(function(){
-        if($(this).val === ''){
+        if($(this).val === ""){
           isValid = false;
         }
       });
@@ -145,23 +138,24 @@ $(document).ready(function() {
           isValid = false;
         }
       });
+      console.log(isValid);
+
       return isValid;
     }
 
 // FORM COMPLETE //
 
     if(validateForm() == true) {
-      var newUser = {
- 
-      scores: [
+      var userScores = [
         $('#q1').val(),
         $('#q2').val(),
         $('#q3').val(),
         $('#q4').val(),
         $('#q5').val(),
         $('#q6').val(),
-      ]
- };
+      ];
+      console.log(userScores);
+ 
 
 // MODAL //
 
@@ -181,9 +175,11 @@ $(document).ready(function() {
     } else { 
       alert("Please reply to all tracks before submitting!")
     }
-});
+window.location.href = "/profile";
+
   return false;
 });
+
 </script>
 </body>
 </html>
