@@ -14,8 +14,6 @@ module.exports = {
       type: Sequelize.STRING
     },   
     name: Sequelize.STRING,
-    birthdate: Sequelize.DATEONLY,
-    images: Sequelize.STRING,
     email: Sequelize.STRING,
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE
@@ -24,6 +22,6 @@ module.exports = {
 
   down: function (queryInterface, Sequelize) {
     return queryInterface
-      .dropTable('concerts');
+      .dropTable('users');
   }
 };
