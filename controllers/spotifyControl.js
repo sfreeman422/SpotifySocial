@@ -12,12 +12,11 @@ var client_secret = '23324134048446d6a40c8599dd00ab2d'; // Your secret
 // THIS IS A REQUIRED PARAMETER FOR THE API.
 var redirect_uri = 'http://localhost:3000/profile/callback';
 
-
-// ------USER  OBJECT VARIABLES --   created globally 
-var userDisplayName = "";
+// setting up global variables for user profile info
 var userID = "";
-
-
+var userName = "";
+var userEmail = "";
+var favArtists = [];
 
 
 // Generates a random string containing numbers and letters
@@ -51,7 +50,7 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // request authorization
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email user-top-read';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -60,14 +59,11 @@ app.get('/login', function(req, res) {
       redirect_uri: redirect_uri,
       state: state
     }));
-
-
 });
 
-
+// This is the redirect route.  We'll need to set it to wherever we are sending the user after they authenticate successfully.
 app.get('/callback', function(req, res) {
-
-
+// console.log("/callback route initiated");
   // request refresh and access tokens
   // after checking the state parameter
 
@@ -113,30 +109,77 @@ app.get('/callback', function(req, res) {
           json: true
         };
 
+
+
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-
-
-          userDisplayName = body.display_name;
           userID = body.id;
+          userName = body.display_name;
+          userEmail = body.email;
+          
+          console.log("user id is " + userID);
+          console.log("user name is "+ userName);
+          console.log("user's email is " + userEmail);
+
+          if (!error && response.statusCode === 200) {
+
+            // GET request for the user's top artists
+            // reset request URL
+            // options = {
+            //   url: 'https://api.spotify.com/v1/me/top/artists?limit=5',
+            //   headers: { 'Authorization': 'Bearer ' + access_token },
+            //   json: true
+            // };
+
+            // use the access token to access the Spotify Web API
+            request.get({
+              url: 'https://api.spotify.com/v1/me/top/artists?limit=5',
+              headers: { 'Authorization': 'Bearer ' + access_token },
+              json: true
+            }, function(error, response, body) {
+            
+
+            for (var i = 0; i < body.items.length; i++) {
+            favArtists.push(body.items[i].name);
+
+            };
+            console.log(favArtists);
+            // userID = body.id;
+            // userName = body.display_name;
+            // userEmail = body.email;
+            
+            // console.log("user id is" + userID);
+            // console.log("user name is "+ userName);
+            // console.log("user's email is " + userEmail);
+          });
+
+
+        // need api call to get fav artists
+        // var favArtists = [];
+
+
+          }
 
         });
 
-        // we can also pass the token to the browser to make requests from there
-        res.redirect('/survey.html'
-          // +
-          // querystring.stringify({
-          //   access_token: access_token,
-          //   refresh_token: refresh_token
-          // })
 
-          );
-      } else {
-        res.redirect('/index.html' +
-          querystring.stringify({
-            error: 'invalid_token'
-          }));
-      }
+        // we can also pass the token to the browser to make requests from there
+        // concatenating the token into the URL was messing up the way index.html loads -- need to fix this later
+
+        res.redirect('/survey.html'
+         // +
+         //  querystring.stringify({
+         //    access_token: access_token,
+         //    refresh_token: refresh_token
+         //  })
+        );
+      } 
+      // else {
+      //   res.redirect('/index.html' +
+      //     querystring.stringify({
+      //       error: 'invalid_token'
+      //     }));
+      // }
     });
   }
 });
@@ -165,12 +208,5 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
-
-  
-  request.get()
-
-
-
-
 
 module.exports = app; 
