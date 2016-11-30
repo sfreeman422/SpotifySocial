@@ -1,63 +1,86 @@
-// var performer = 'grouplove';
-
-// function gatherConcertInfo(){
-
-//   var queryURL = 'https://api.seatgeek.com/2/events?performers.slug='+performer+'&client_id=NjIzMjUyMXwxNDc5NDI2Nzkz&client_secret=zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
-
-//   $.ajax({
-//     url:queryURL,
-//     method:'GET'
-//     })
-//     .done(function(response){
-
-//       console.log(response);
-
-//       for (i=0; i < response.events.length; i++) {
-
-//         var concertDiv = $('<div class="concertInfo">');
+var models = require('../models');
+var express = require('express');
+var router = express.Router();
+var request = require('request');
 
 
-//         var img = $('<img>');
+//Steps to get this working:
+//1. Hit the '/' route. Status: WORKING
+//2. Initiate getInfo() function to search the database (array currently) for the users top artists Status: WORKING
+//3. For each artist in the database, pass the queryURL to getID() Status: WORKING
+//4. Inside of getID, submit the request to the API Status: WORKING
+//5. Search the body for the performer ID STATUS: WORKING
+//6. Add the performer ID to the database. Status: BROKEN
+//7. Pass the ID to the makeRequest function to get the concerts. 
 
-//         img.attr("src", response.events[i].performers[0].image);
+//WE NEED PROMISES HERE! Without the promises, we are unable to avoid the asynchronicity of JS. When you pick this up again FOCUS ON THE ASYNCRHONICITY. 
 
-//         img.addClass('eventImg');
+//Route upon hitting hte seatgeek route. 
+router.get('/', function(req, res){
 
-//         concertDiv.append(img);
-
-
-//         var performer = response.events[i].performers[0].name;
-
-//         var p = $('<p>').text("Performer: " + performer);
-
-//         p.addClass('performer');
-
-//         concertDiv.append(p);
-
-
-//         var venue = response.events[i].venue.name;
-
-//         var v = $('<p>').text("Venue: " + venue);
-
-//         v.addClass('venue');
-
-//         concertDiv.append(v);
-
-
-//         var link = response.events[i].url
-
-//         var urlLink = $('<a>').text('Buy Tickets');
-
-//         urlLink.attr('href', link);
-
-//         concertDiv.append(urlLink);
+//This function delcaration is to grab the ID for the artist by searching by artist name. 
+function getID(queryURL){
+		request(queryURL, function(err, resp, body){
+			if(!err && resp.statusCode == 200){
+				var response = JSON.parse(body)
+				var id = response.performers[0].id;
+				return id;
+			}
+			else{
+				console.log(err);
+				return err;
+			}
+		})
+}
 
 
-//         $('#eventsView').prepend(concertDiv);
+//This function is to query the shows based on artist ID. This is not yet using artistID, instead it is using artistName and is not fully functional. 
+//This is where it all starts. We grab the data here, pass it to the getID function and then return the full URL to beb used by makeRequest. 
+function getInfo(){
+	//This will eventually be data pulled from the users top 20 artists. 
+	var performers = ['against-me', 'bad-religion', 'grouplove'];
+	var performerQuery = ''; 
 
-//     }
+	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
+	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
 
-//     });
-//   };
+	for(var i = 0; i < performers.length; i++){
+		var artist = performers[i];
+		console.log("Artist being tested is: "+artist);
+		var queryURL = 'https://api.seatgeek.com/2/performers?slug='+artist+'&client_id='+clientID+'&client_secret='+clientSecret;
+		console.log("QueryURL is "+queryURL);
+		var id = getID(queryURL);
+		if(i = performers.length){
+			performerQuery += id;
+		}
+		else{
+			performerQuery += id+"+";
+		}
+	}
+	console.log("before sending, performerQuery is "+performerQuery);
+	return performerQuery; 
+}
+	
+//This function declaration will be used to actually query the seatgeek api using all of our top artists by ID. Not yet functional using IDs. Relies on getInfo();
+function makeRequest(performerQuery){
+	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
+	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
+	console.log("performerquery is: "+performerQuery);
+	var queryURL = 'https://api.seatgeek.com/2/events?performers.id='+performerQuery+'&client_id='+clientID+'&client_secret='+clientSecret
+	request(queryURL, function(err, resp, body){
+		if (!err && resp.statusCode == 200) {
+    		console.log(body)
+  		}
+  		else{
+  			console.log(err);
+  			console.log(queryURL);
+  		}
+	});
+}
 
-//   gatherConcertInfo();
+//Once we have getInfo figured out, we will be able to call the makeRequest to actualy grab the concerts. 
+makeRequest(getInfo());
+
+});
+
+module.exports = router;  

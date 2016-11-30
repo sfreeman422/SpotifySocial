@@ -21,6 +21,7 @@ nav .brand-logo {
 p {
   line-height: 2rem;
   font-family: 'Original Surfer';
+  margin-top: 20px;
 }
 html {
   line-height: 1.5;
@@ -31,13 +32,16 @@ html {
 h2{
   color: orange;
   font-size: 100px;
+  margin: 0 0 0 0;
 }
 h4{
   color: orange;
   font-size: 30px;
+  margin-top: 5px;
+  margin:  0 0 0 0;
 }
 h5{
-  color:purple;
+  color: purple;
   font-size: 50px;
 }
 h6{
@@ -51,6 +55,12 @@ h7{
 h8{
   color: orange;
   font-size: 50px;
+}
+h9{
+  color: white;
+  font-size: 15px;
+  margin-top: 500px;
+  margin-left: 35%;
 }
 .white {
     background-color: purple !important;
@@ -97,8 +107,13 @@ h8{
 .icon-block .material-icons {
   font-size: 75px;
   color: purple;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 footer.page-footer {
   margin: 0;
+}
+.purple {
+    background-color: purple !important;
 }
