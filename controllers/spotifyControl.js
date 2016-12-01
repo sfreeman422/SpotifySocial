@@ -16,7 +16,7 @@ var redirect_uri = 'http://localhost:3000/profile/callback';
 var userID = "";
 var userName = "";
 var userEmail = "";
-var userPic = []:
+var userPic = [];
 var favArtists = [];
 
 // Generates a random string containing numbers and letters
