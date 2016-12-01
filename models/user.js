@@ -7,23 +7,22 @@ module.exports = function(sequelize, DataTypes) {
 		email: DataTypes.STRING
 	}, {
 
-		underscored: true,
+		// underscored: true,
 
-		freezeTableName: true,
+		// freezeTableName: true,
 
-		tableName: 'users',
+		// tableName: 'Users',
 
-		classMethods: {
-			associate: function(models) {
-				Users.hasMany(models.Concerts, {
-					onDelete: "CASCADE",
-					hooks: true,
-					foreignKey: {
-						allowNull: false
-					}
-				})
-			}
-		}
+		// classMethods: {
+		// 	associate: function(models) {
+		// 		Users.hasMany(models.Concerts, {
+		// 			onDelete: "CASCADE",
+		// 			foreignKey: {
+		// 				allowNull: false
+		// 			}
+		// 		})
+		// 	}
+		// }
 	})
 
 	return Users;		
