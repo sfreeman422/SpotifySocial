@@ -1,30 +1,30 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-	var concerts = sequelize.define("concerts", {
+	var Concerts = sequelize.define("Concerts", {
 		artist_id: DataTypes.INTEGER,
 		artist: DataTypes.STRING,
 		eventName: DataTypes.STRING,
 		venue: DataTypes.STRING
 	}, {
 
-		underscored: true,
+		// underscored: true,
 
-		freezeTableName: true,
+		// freezeTableName: true,
 
-		tableName: 'concerts',
+		// tableName: 'Concerts',
 
-		classMethods: {
-			associate: function(models) {
-				concerts.belongsTo(models.users, {
-					onDelete: "CASCADE",
-					foreignKey: {
-						allowNull: false
-					}
-				})
-			}
-		}
+		// classMethods: {
+		// 	associate: function(models) {
+		// 		Concerts.belongsTo(models.Users, {
+		// 			onDelete: "CASCADE",
+		// 			foreignKey: {
+		// 				allowNull: false
+		// 			}
+		// 		})
+		// 	}
+		// }
 	});
 
-	return concerts;		
+	return Concerts;		
 };

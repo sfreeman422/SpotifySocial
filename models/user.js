@@ -1,29 +1,29 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-	var users = sequelize.define("users", {
+	var Users = sequelize.define("Users", {
 		user_id: DataTypes.STRING,
 		name: DataTypes.STRING,
 		email: DataTypes.STRING
 	}, {
 
-		underscored: true,
+		// underscored: true,
 
-		freezeTableName: true,
+		// freezeTableName: true,
 
-		tableName: 'users',
+		// tableName: 'Users',
 
-		classMethods: {
-			associate: function(models) {
-				users.hasMany(models.concerts, {
-					onDelete: "CASCADE",
-					foreignKey: {
-						allowNull: false
-					}
-				})
-			}
-		}
+		// classMethods: {
+		// 	associate: function(models) {
+		// 		Users.hasMany(models.Concerts, {
+		// 			onDelete: "CASCADE",
+		// 			foreignKey: {
+		// 				allowNull: false
+		// 			}
+		// 		})
+		// 	}
+		// }
 	})
 
-	return users;		
+	return Users;		
 };

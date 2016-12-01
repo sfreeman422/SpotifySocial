@@ -3,7 +3,7 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
  return queryInterface.createTable(
-  'users',
+  'Users',
   {
     id: {
       type: Sequelize.INTEGER,
@@ -18,20 +18,12 @@ module.exports = {
     },
     email: {
       type: Sequelize.STRING
-    },
-    createdAt: {
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW
-    },
-    updatedAt: {
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.NOW
     }
   });
 },
 
   down: function (queryInterface, Sequelize) {
     return queryInterface
-      .dropTable('users');
+      .dropTable('Users');
   }
 };
