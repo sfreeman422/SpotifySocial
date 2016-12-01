@@ -16,6 +16,7 @@ var redirect_uri = 'http://localhost:3000/profile/callback';
 var userID = "";
 var userName = "";
 var userEmail = "";
+var userPic = []:
 var favArtists = [];
 
 // Generates a random string containing numbers and letters
@@ -109,6 +110,7 @@ app.get('/callback', function(req, res) {
         request.get(options, function(error, response, body) {
           userID = body.id;
           userName = body.display_name;
+          userPic = body.images;
           userEmail = body.email;
           
           console.log("user id is " + userID);
