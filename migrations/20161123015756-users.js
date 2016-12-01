@@ -19,6 +19,9 @@ module.exports = {
     email: {
       type: Sequelize.STRING
     }
+    // favartists: {
+    //   type: Sequelize.ARRAY(Sequelize.STRING)  
+    // }
   });
 },
 

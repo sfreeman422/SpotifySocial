@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
 		user_id: DataTypes.STRING,
 		name: DataTypes.STRING,
 		email: DataTypes.STRING
+		// favartists: DataTypes.ARRAY(DataTypes.STRING)
 	}, {
 
 		// underscored: true,

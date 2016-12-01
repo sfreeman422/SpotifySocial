@@ -147,12 +147,30 @@ app.get('/callback', function(req, res) {
             };
             console.log(favArtists);
 
-            models.Users.create({
-              user_id: userID,
-              name: userName,
-              email: userEmail
-            });
+            findUser = function() {
+              models.Users.findAll({
+                where: {
+                  user_id: userID
+                }
+              })
+            };
 
+            createUser = function() {  
+             models.Users.create({
+                user_id: userID,
+                name: userName,
+                email: userEmail
+                // favartists: favArtists
+              });
+            };
+
+            if (findUser() !== undefined) {
+              return false
+            }
+            else {
+              createUser();
+            }
+ 
             // userID = body.id;
             // userName = body.display_name;
             // userEmail = body.email;
