@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-	var Concerts = sequelize.define("Concerts", {
+	var concerts = sequelize.define("concerts", {
 		artist_id: DataTypes.INTEGER,
 		artist: DataTypes.STRING,
 		eventName: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
 
 		classMethods: {
 			associate: function(models) {
-				Concerts.belongsTo(models.Users, {
+				concerts.belongsTo(models.users, {
 					onDelete: "CASCADE",
 					foreignKey: {
 						allowNull: false
@@ -26,5 +26,5 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 
-	return Concerts;		
+	return concerts;		
 };

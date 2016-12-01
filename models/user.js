@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-	var Users = sequelize.define("Users", {
+	var users = sequelize.define("users", {
 		user_id: DataTypes.STRING,
 		name: DataTypes.STRING,
 		email: DataTypes.STRING
@@ -15,9 +15,8 @@ module.exports = function(sequelize, DataTypes) {
 
 		classMethods: {
 			associate: function(models) {
-				Users.hasMany(models.Concerts, {
+				users.hasMany(models.concerts, {
 					onDelete: "CASCADE",
-					hooks: true,
 					foreignKey: {
 						allowNull: false
 					}
@@ -26,5 +25,5 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	})
 
-	return Users;		
+	return users;		
 };

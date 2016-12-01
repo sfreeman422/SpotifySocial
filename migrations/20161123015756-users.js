@@ -13,10 +13,20 @@ module.exports = {
     user_id: {
       type: Sequelize.STRING
     },   
-    name: Sequelize.STRING,
-    email: Sequelize.STRING,
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE
+    name: {
+      type: Sequelize.STRING
+    },
+    email: {
+      type: Sequelize.STRING
+    },
+    createdAt: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW
+    },
+    updatedAt: {
+      type: Sequelize.DATE,
+      defaultValue: Sequelize.NOW
+    }
   });
 },
 
