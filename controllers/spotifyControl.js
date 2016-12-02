@@ -121,7 +121,7 @@ app.get('/callback', function(req, res) {
 
             // use the access token to access the Spotify Web API for a user's top artists
             request.get({
-              url: 'https://api.spotify.com/v1/me/top/artists?limit=5&offset=0',
+              url: 'https://api.spotify.com/v1/me/top/artists?limit=5&offset=0&time_range=short_term',
               headers: { 'Authorization': 'Bearer ' + access_token },
               json: true
             }, function(error, response, body) {
