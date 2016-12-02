@@ -50,7 +50,7 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // set scope for Spotify user info --  this will determine what info is available to our app
-  var scope = 'user-read-private user-read-email user-top-read';
+  var scope = 'user-read-private user-read-birthdate user-read-email user-top-read';
   // request authorization
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
