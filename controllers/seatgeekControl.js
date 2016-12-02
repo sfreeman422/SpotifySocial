@@ -78,8 +78,14 @@ function makeRequest(performerQuery){
 	    		console.log("===========================");
 	    		console.log("Concert Name: "+concert.events[i].title);
 	    		console.log("Concert Date: "+concert.events[i].datetime_local);
-	    		console.log("Performers: "+concert.events[i].performers);
-	    		console.log("Venue: "+concert.events[i].venue);
+	    		console.log("Performers are: ");
+	    		for(var j = 0; j< concert.events[i].performers.length; j++){
+	    			console.log(concert.events[i].performers[j].short_name);
+	    		}
+	    		console.log("Venue Information: ");
+	    		console.log("Venue Name: "+concert.events[i].venue.name);
+	    		console.log("Venue Address: "+concert.events[i].venue.address);
+	    		console.log("Venue City/State: "+concert.events[i].venue.extended_address);
     		}
   		}
   		else{
