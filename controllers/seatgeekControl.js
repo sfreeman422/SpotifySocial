@@ -29,7 +29,7 @@ function getInfo(){
 //This function delcaration is to grab the ID for the artist by searching by artist name. 
 var getID = new Promise(function (resolve, reject){
 	//This will eventually be data pulled from the users top 20 artists. 
-	var performers = ['against-me', 'bad-religion', 'grouplove'];
+	var performers = ['against-me', 'bad-religion', 'grouplove', 'young-thug', 'taylor-swift', 'justin-beiber'];
 	var performerQuery = [];
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
