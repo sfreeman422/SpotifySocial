@@ -12,7 +12,6 @@ var request = require('request');
 //6. Add the performer ID to the database. Status: CONCEPTUALLY WORKING. NEED DB COMMANDS
 //7. Pass the ID to the makeRequest function to get the concerts: WORKING. 
 //8. Store relevant info in the DB: NEED DB COMMANDS
-//9. 
 
 //Route upon hitting hte seatgeek route. 
 router.get('/', function(req, res){
@@ -66,7 +65,7 @@ var getID = new Promise(function (resolve, reject){
 });
 
 //STEP THREE: CALLED VIA GETINFO (EVENTUALLY)
-//This function declaration will be used to actually query the seatgeek api using all of our top artists by ID. Not yet functional using IDs. Relies on getInfo();
+//This function declaration will be used to actually query the seatgeek api using all of our top artists by ID.
 function makeRequest(performerQuery){
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
@@ -105,7 +104,7 @@ function makeRequest(performerQuery){
 	});
 }
 
-//Once we have getInfo figured out, we will be able to call the makeRequest to actualy grab the concerts. 
+//Kicks it all off. 
 getInfo();
 
 });
