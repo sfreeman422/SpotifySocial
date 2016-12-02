@@ -29,6 +29,9 @@ module.exports = {
     },
     ticketURL: {
       type: Sequelize.STRING
+    },
+    attendees: {
+      type: Sequelize.STRING
     }
   });
 },
