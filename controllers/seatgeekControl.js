@@ -61,12 +61,26 @@ var getID = new Promise(function (resolve, reject){
 function makeRequest(performerQuery){
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
+	var concerts = {};
 
 	var queryURL = 'https://api.seatgeek.com/2/events?performers.id='+performerQuery+'&geoip=true&range=100mi&client_id='+clientID+'&client_secret='+clientSecret
 	console.log(queryURL);
 	request(queryURL, function(err, resp, body){
 		if (!err && resp.statusCode == 200) {
-    		console.log(JSON.parse(body))
+    		var concert = JSON.parse(body);
+    		var concertLength = concert.events.length;
+    		var concertName = concert.events[0].title;
+    		var concertDate = concert.events[0].datetime_local;
+    		var concertPerformers = concert.events[0].performers;
+    		var concertVenue = concert.events[0].venue;
+    		for(var i = 0; i<concertLength; i++){
+	    		console.log("Concert"+i+" is: ");
+	    		console.log("===========================");
+	    		console.log("Concert Name: "+concert.events[i].title);
+	    		console.log("Concert Date: "+concert.events[i].datetime_local);
+	    		console.log("Performers: "+concert.events[i].performers);
+	    		console.log("Venue: "+concert.events[i].venue);
+    		}
   		}
   		else{
   			console.log(err);
