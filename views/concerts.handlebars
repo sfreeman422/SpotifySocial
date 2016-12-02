@@ -7,7 +7,7 @@
           <p>{{this.id}}. {{this._name}}</p>
           <h2>Do you wanna go?</h2>  
           <form action="update/{{this.id}}?_method=PUT" method="POST">
-            <input type="hidden" name="attending" value={{user.id}}>
+            <input type="hidden" name="attending" value="true">
             <button type="submit" class="waves-effect waves-light btn orange z-depth-4">Yes!</button>
           </form>
         </div>
