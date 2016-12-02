@@ -1,5 +1,5 @@
+<h1>This is the Concert Connect index handlebars.</h1>
 <div class="row">
-  {{! Concert Connect}}
   <div class="container">
     <ul>
       {{#each match}}
@@ -7,34 +7,13 @@
           <div class="card orange">
             <p>
               {{this.id}}. {{this._name}}
-
               <form action="update/{{this.id}}?_method=PUT" method="POST">
                 <input type="hidden" name="devoured" value="1">
                 <button type="submit" class="waves-effect waves-light btn orange z-depth-4">You Have Coonected</button>
               </form>
-  
             </p>
           </div>
         {{/unless}}
-      {{/each}}
-    </ul>
-  </div>
-
-  {{! Devoured Burgers}}
-  <div class="container">
-    <ul>
-      {{#each match}}
-        {{#if this.devoured}}
-          <div class="card purple">
-            <p class="grey-text">
-              {{this.id}}. {{this._name}}
-
-              <form action="delete/{{this.id}}?_method=DELETE" method="POST">
-                <button type="submit" class="waves-effect waves-light btn purple z-depth-4">Remove</button>
-              </form>
-            </p>
-          </div>
-        {{/if}}
       {{/each}}
     </ul>
   </div>
