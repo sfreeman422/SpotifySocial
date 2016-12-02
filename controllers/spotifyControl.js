@@ -39,8 +39,8 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.get('/', function(req, res){
-  res.send("This will be a profile page or a log in page depending on log in status. Type localhost:3000/profile/login to hit the spotify login for now.");
-})
+  res.render('concerts');
+});
 
 
 app.get('/login', function(req, res) {
