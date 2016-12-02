@@ -30,14 +30,21 @@ function getInfo(){
 //This function delcaration is to grab the ID for the artist by searching by artist name. 
 var getID = new Promise(function (resolve, reject){
 	//This will eventually be data pulled from the users top 20 artists. 
-	var performers = ['against-me', 'bad-religion', 'grouplove', 'young-thug', 'taylor-swift', 'justin-beiber'];
-	
+	var performers = ['against me', 'bad religion', 'grouplove', 'young thug', 'taylor swift', 'justin beiber'];
+	var nospace = [];
+	//This should resolve the spaces vs dashes issue. 
+	for(var d = 0; d < performers.length; d++){
+		var string = performers[d];
+		string = string.replace(/\s+/g, "-");
+		nospace.push(string);
+	}
+
 	var performerQuery = [];
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
 
-	for(var i = 0; i < performers.length; i++){
-		var artist = performers[i];
+	for(var i = 0; i < nospace.length; i++){
+		var artist = nospace[i];
 		var queryURL = 'https://api.seatgeek.com/2/performers?slug='+artist+'&client_id='+clientID+'&client_secret='+clientSecret;
 
 		request(queryURL, function(err, resp, body){
@@ -88,6 +95,7 @@ function makeRequest(performerQuery){
 	    		console.log("Venue Name: "+concert.events[i].venue.name);
 	    		console.log("Venue Address: "+concert.events[i].venue.address);
 	    		console.log("Venue City/State: "+concert.events[i].venue.extended_address);
+	    		console.log("Buy Tickets: "+concert.events[i].url)
     		}
   		}
   		else{
