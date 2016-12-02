@@ -9,17 +9,25 @@ module.exports = {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-    artist_id: {
-      type: Sequelize.INTERGER
-    },  
-    artist: {
-      type: Sequelize.STRING
-    },
+    }, 
     eventName: {
       type: Sequelize.STRING
     },
-    venue: {
+    eventDate: {
+      type: Sequelize.STRING
+    }
+    venueName: {
+      type: Sequelize.STRING
+    },
+    //Needs to be a string, separated by commas. 
+    venueAddress: {
+      type: Sequelize.STRING
+    },
+    //Needs to be a string, separated by commas. 
+    artists: {
+      type: Sequelize.STRING
+    },
+    ticketURL: {
       type: Sequelize.STRING
     }
   });
