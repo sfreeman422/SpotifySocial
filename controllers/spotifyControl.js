@@ -18,8 +18,11 @@ var redirect_uri = 'http://localhost:3000/profile/callback';
 var userID = "";
 var userName = "";
 var userEmail = "";
-var favArtists = [];
-
+var favArtists1 = "";
+var favArtists2 = "";
+var favArtists3 = "";
+var favArtists4 = "";
+var favArtists5 = "";
 
 // Generates a random string containing numbers and letters
 //  * @param  {number} length The length of the string
@@ -142,35 +145,19 @@ app.get('/callback', function(req, res) {
             
 
             for (var i = 0; i < body.items.length; i++) {
-            favArtists.push(body.items[i].name);
-
-            };
-            console.log(favArtists);
-
-            findUser = function() {
-              models.Users.findAll({
-                where: {
-                  user_id: userID
-                }
-              })
+              favArtists1 = body.items[0].name;
+              favArtists2 = body.items[1].name;
+              favArtists3 = body.items[2].name;
+              favArtists4 = body.items[3].name;
+              favArtists5 = body.items[4].name;
             };
 
-            createUser = function() {  
-             models.Users.create({
-                user_id: userID,
-                name: userName,
-                email: userEmail
-                // favartists: favArtists
-              });
-            };
+            console.log(favArtists1);
+            console.log(favArtists2);
+            console.log(favArtists3);
+            console.log(favArtists4);
+            console.log(favArtists5);
 
-            if (findUser() !== undefined) {
-              return false
-            }
-            else {
-              createUser();
-            }
- 
             // userID = body.id;
             // userName = body.display_name;
             // userEmail = body.email;
@@ -186,28 +173,47 @@ app.get('/callback', function(req, res) {
 
 
           }
+  models.Users.create({
+    user_id: userID,
+    name: userName,
+    email: userEmail,
+    favartists1: favArtists1,
+    favartists2: favArtists2,
+    favartists3: favArtists3,
+    favartists4: favArtists4,
+    favartists5: favArtists5
+  })
+  .then(function() {
+  models.Users.findOrCreate({
+    defaults: {user_id: userID}, 
+    where: {
+      name: userName,
+      email: userEmail,
+      favartists1: favArtists1,
+      favartists2: favArtists2,
+      favartists3: favArtists3,
+      favartists4: favArtists4,
+      favartists5: favArtists5}
+  })
+  .spread(function(user, created) {
+    if (created == false) {
+      res.redirect('/profile');
+    } else {
+      res.redirect('/survey.html')
+    }
+    console.log(user.get({
+      plain: true
+    }));
+    console.log(created);
 
-        });
-
-
-        // we can also pass the token to the browser to make requests from there
-        // concatenating the token into the URL was messing up the way index.html loads -- need to fix this later
-
-        res.redirect('/survey.html'
-         // +
-         //  querystring.stringify({
-         //    access_token: access_token,
-         //    refresh_token: refresh_token
-         //  })
-        );
-      } 
-      // else {
-      //   res.redirect('/index.html' +
-      //     querystring.stringify({
-      //       error: 'invalid_token'
-      //     }));
-      // }
     });
+    });
+    });
+    
+        
+      } 
+    });
+
   }
 });
 

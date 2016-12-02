@@ -18,10 +18,22 @@ module.exports = {
     },
     email: {
       type: Sequelize.STRING
+    },
+    favartists1: {
+      type: Sequelize.STRING 
+    },
+    favartists2: {
+      type: Sequelize.STRING 
+    },
+    favartists3: {
+      type: Sequelize.STRING 
+    },
+    favartists4: {
+      type: Sequelize.STRING 
+    },
+    favartists5: {
+      type: Sequelize.STRING 
     }
-    // favartists: {
-    //   type: Sequelize.ARRAY(Sequelize.STRING)  
-    // }
   });
 },
 
