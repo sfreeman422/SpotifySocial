@@ -9,17 +9,17 @@ var request = require('request');
 //3. For each artist in the database, pass the queryURL to getID() Status: WORKING
 //4. Inside of getID, submit the request to the API Status: WORKING
 //5. Search the body for the performer ID STATUS: WORKING
-//6. Add the performer ID to the database. Status: BROKEN
-//7. Pass the ID to the makeRequest function to get the concerts. 
-
-//WE NEED PROMISES HERE! Without the promises, we are unable to avoid the asynchronicity of JS. When you pick this up again FOCUS ON THE ASYNCRHONICITY. 
+//6. Add the performer ID to the database. Status: CONCEPTUALLY WORKING. NEED DB COMMANDS
+//7. Pass the ID to the makeRequest function to get the concerts: WORKING. 
+//8. Store relevant info in the DB: NEED DB COMMANDS
 
 //Route upon hitting hte seatgeek route. 
 router.get('/', function(req, res){
 
 //STEP ONE:
-//This function is to query the shows based on artist ID. This is not yet using artistID, instead it is using artistName and is not fully functional. 
-//This is where it all starts. We grab the data here, pass it to the getID function and then return the full URL to beb used by makeRequest. 
+//This function is to query the shows based on artist ID.
+//This is where it all starts. 
+//GetInfo is called in this program, which calls the getID promise to get it all started. 
 function getInfo(){
 		getID
 }
@@ -29,13 +29,21 @@ function getInfo(){
 //This function delcaration is to grab the ID for the artist by searching by artist name. 
 var getID = new Promise(function (resolve, reject){
 	//This will eventually be data pulled from the users top 20 artists. 
-	var performers = ['against-me', 'bad-religion', 'grouplove', 'young-thug', 'taylor-swift', 'justin-beiber'];
+	var performers = ['against me', 'bad religion', 'grouplove', 'young thug', 'taylor swift', 'justin beiber'];
+	var nospace = [];
+	//This should resolve the spaces vs dashes issue. 
+	for(var d = 0; d < performers.length; d++){
+		var string = performers[d];
+		string = string.replace(/\s+/g, "-");
+		nospace.push(string);
+	}
+
 	var performerQuery = [];
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
 
-	for(var i = 0; i < performers.length; i++){
-		var artist = performers[i];
+	for(var i = 0; i < nospace.length; i++){
+		var artist = nospace[i];
 		var queryURL = 'https://api.seatgeek.com/2/performers?slug='+artist+'&client_id='+clientID+'&client_secret='+clientSecret;
 
 		request(queryURL, function(err, resp, body){
@@ -57,16 +65,37 @@ var getID = new Promise(function (resolve, reject){
 });
 
 //STEP THREE: CALLED VIA GETINFO (EVENTUALLY)
-//This function declaration will be used to actually query the seatgeek api using all of our top artists by ID. Not yet functional using IDs. Relies on getInfo();
+//This function declaration will be used to actually query the seatgeek api using all of our top artists by ID.
 function makeRequest(performerQuery){
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
+	var concerts = {};
 
 	var queryURL = 'https://api.seatgeek.com/2/events?performers.id='+performerQuery+'&geoip=true&range=100mi&client_id='+clientID+'&client_secret='+clientSecret
 	console.log(queryURL);
 	request(queryURL, function(err, resp, body){
 		if (!err && resp.statusCode == 200) {
-    		console.log(JSON.parse(body))
+    		var concert = JSON.parse(body);
+    		var concertLength = concert.events.length;
+    		var concertName = concert.events[0].title;
+    		var concertDate = concert.events[0].datetime_local;
+    		var concertPerformers = concert.events[0].performers;
+    		var concertVenue = concert.events[0].venue;
+    		for(var i = 0; i<concertLength; i++){
+	    		console.log("Concert"+i+" is: ");
+	    		console.log("===========================");
+	    		console.log("Concert Name: "+concert.events[i].title);
+	    		console.log("Concert Date: "+concert.events[i].datetime_local);
+	    		console.log("Performers are: ");
+	    		for(var j = 0; j< concert.events[i].performers.length; j++){
+	    			console.log(concert.events[i].performers[j].short_name);
+	    		}
+	    		console.log("Venue Information: ");
+	    		console.log("Venue Name: "+concert.events[i].venue.name);
+	    		console.log("Venue Address: "+concert.events[i].venue.address);
+	    		console.log("Venue City/State: "+concert.events[i].venue.extended_address);
+	    		console.log("Buy Tickets: "+concert.events[i].url)
+    		}
   		}
   		else{
   			console.log(err);
@@ -75,7 +104,7 @@ function makeRequest(performerQuery){
 	});
 }
 
-//Once we have getInfo figured out, we will be able to call the makeRequest to actualy grab the concerts. 
+//Kicks it all off. 
 getInfo();
 
 });
