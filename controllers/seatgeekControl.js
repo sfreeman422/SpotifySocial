@@ -77,23 +77,25 @@ function makeRequest(performerQuery){
 		if (!err && resp.statusCode == 200) {
     		var concert = JSON.parse(body);
     		var concertLength = concert.events.length;
-    		var concertName = concert.events[0].title;
-    		var concertDate = concert.events[0].datetime_local;
-    		var concertPerformers = concert.events[0].performers;
-    		var concertVenue = concert.events[0].venue;
     		for(var i = 0; i<concertLength; i++){
 	    		console.log("Concert"+i+" is: ");
 	    		console.log("===========================");
+	    		//Accounted for in DB. 
 	    		console.log("Concert Name: "+concert.events[i].title);
+	    		//Accounted for in DB. 
 	    		console.log("Concert Date: "+concert.events[i].datetime_local);
+	    		//Accounted for in DB. NEEDS TO BE A STRING SEPRATED BY COMMAS
 	    		console.log("Performers are: ");
 	    		for(var j = 0; j< concert.events[i].performers.length; j++){
 	    			console.log(concert.events[i].performers[j].short_name);
 	    		}
 	    		console.log("Venue Information: ");
+	    		//Accounted for in DB.
 	    		console.log("Venue Name: "+concert.events[i].venue.name);
+	    		//Accounted for in DB. NEED TO BE SEPARATED BY COMMAS
 	    		console.log("Venue Address: "+concert.events[i].venue.address);
 	    		console.log("Venue City/State: "+concert.events[i].venue.extended_address);
+	    		//Account for in DB. 
 	    		console.log("Buy Tickets: "+concert.events[i].url)
     		}
   		}
