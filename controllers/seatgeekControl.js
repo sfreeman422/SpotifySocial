@@ -9,17 +9,18 @@ var request = require('request');
 //3. For each artist in the database, pass the queryURL to getID() Status: WORKING
 //4. Inside of getID, submit the request to the API Status: WORKING
 //5. Search the body for the performer ID STATUS: WORKING
-//6. Add the performer ID to the database. Status: BROKEN
-//7. Pass the ID to the makeRequest function to get the concerts. 
-
-//WE NEED PROMISES HERE! Without the promises, we are unable to avoid the asynchronicity of JS. When you pick this up again FOCUS ON THE ASYNCRHONICITY. 
+//6. Add the performer ID to the database. Status: CONCEPTUALLY WORKING. NEED DB COMMANDS
+//7. Pass the ID to the makeRequest function to get the concerts: WORKING. 
+//8. Store relevant info in the DB: NEED DB COMMANDS
+//9. 
 
 //Route upon hitting hte seatgeek route. 
 router.get('/', function(req, res){
 
 //STEP ONE:
-//This function is to query the shows based on artist ID. This is not yet using artistID, instead it is using artistName and is not fully functional. 
-//This is where it all starts. We grab the data here, pass it to the getID function and then return the full URL to beb used by makeRequest. 
+//This function is to query the shows based on artist ID.
+//This is where it all starts. 
+//GetInfo is called in this program, which calls the getID promise to get it all started. 
 function getInfo(){
 		getID
 }
@@ -30,6 +31,7 @@ function getInfo(){
 var getID = new Promise(function (resolve, reject){
 	//This will eventually be data pulled from the users top 20 artists. 
 	var performers = ['against-me', 'bad-religion', 'grouplove', 'young-thug', 'taylor-swift', 'justin-beiber'];
+	
 	var performerQuery = [];
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
