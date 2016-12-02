@@ -62,10 +62,11 @@ function makeRequest(performerQuery){
 	var clientID = 'NjIzMjUyMXwxNDc5NDI2Nzkz';
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
 
-	var queryURL = 'https://api.seatgeek.com/2/events?performers.id='+performerQuery+'&client_id='+clientID+'&client_secret='+clientSecret
+	var queryURL = 'https://api.seatgeek.com/2/events?performers.id='+performerQuery+'&geoip=true&range=100mi&client_id='+clientID+'&client_secret='+clientSecret
+	console.log(queryURL);
 	request(queryURL, function(err, resp, body){
 		if (!err && resp.statusCode == 200) {
-    		console.log(JSON.stringify(body))
+    		console.log(JSON.parse(body))
   		}
   		else{
   			console.log(err);
