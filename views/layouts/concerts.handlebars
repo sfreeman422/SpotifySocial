@@ -1,0 +1,18 @@
+<div class="row">
+  {{! Concert Connect}}
+  <div class="container">
+    <ul>
+      {{#each concert}}
+        <div class="card orange">
+          <p>{{this.id}}. {{this._name}}</p>
+          <h2>Do you wanna go?</h2>  
+          <form action="update/{{this.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="attending" value={{user.id}}>
+            <button type="submit" class="waves-effect waves-light btn orange z-depth-4">Yes!</button>
+          </form>
+        </div>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
