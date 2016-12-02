@@ -1,0 +1,16 @@
+<h1>Look at who's also going.</h1>
+
+<div class="row">
+  <div class="container">
+    <ul>
+      {{#each match}}
+        <div class="card orange">
+          <p>
+            {{this.id}}. {{this._name}}
+            {{this.attendees}}
+          </p>
+        </div>
+      {{/each}}
+    </ul>
+  </div>
+</div>
