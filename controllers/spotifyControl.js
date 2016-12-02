@@ -151,6 +151,11 @@ app.get('/callback', function(req, res) {
   }
 });
 
+// create a /matches route --  this will serve up matches.hbs after the user clicks on the "show me matches" button
+app.get('/matches', function(req, res){
+  res.render('matches');
+});
+
 // access tokens are set to expire --  the refresh will get a new token
 app.get('/refresh_token', function(req, res) {
   // requesting access token from refresh token
