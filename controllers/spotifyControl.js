@@ -110,18 +110,19 @@ app.get('/callback', function(req, res) {
         request.get(options, function(error, response, body) {
           userID = body.id;
           userName = body.display_name;
-          userPic = body.images;
+          userPic = body.images[0].url;
           userEmail = body.email;
           
           console.log("user id is " + userID);
           console.log("user name is "+ userName);
           console.log("user's email is " + userEmail);
+          console.log("user's profile pic is " + userPic);
 
           if (!error && response.statusCode === 200) {
 
             // use the access token to access the Spotify Web API for a user's top artists
             request.get({
-              url: 'https://api.spotify.com/v1/me/top/artists?limit=5&offset=0&time_range=short_term',
+              url: 'https://api.spotify.com/v1/me/top/artists?limit=20&offset=0&time_range=medium_term',
               headers: { 'Authorization': 'Bearer ' + access_token },
               json: true
             }, function(error, response, body) {
