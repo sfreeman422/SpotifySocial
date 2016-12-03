@@ -27,13 +27,13 @@ module.exports = {
     },
     //Needs to be a string, separated by commas. 
     artists: {
-      Sequelize.STRING
+      type: Sequelize.STRING
     },
     ticketURL: {
-      Sequelize.STRING
+      type: Sequelize.STRING
     },
     attendees: {
-      Sequelize.STRING
+      type: Sequelize.STRING
     }
   });
 },
