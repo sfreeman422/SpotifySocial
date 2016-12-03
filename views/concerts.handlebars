@@ -8,20 +8,15 @@
           <p>{{this.dataValues.venueName}}</p>
           <p>{{this.dataValues.venueAddress}}</p>
           <p>{{this.dataValues.eventDate}}</p>
-          <p>Buy Tickets Here: {{this.dataValues.ticketURL}}</p>
-          <h6>Do you wanna go?</h6>  
-          <form action="update/{{this.id}}?_method=PUT" method="POST">
-            <input type="hidden" name="attending" value="true">
-            <button type="submit" class="waves-effect waves-light btn orange z-depth-4">Yes!</button>
+          <a href = {{this.dataValues.ticketURL}} id="tix">Buy Tickets Here</a>
+          <p>Do you wanna go?</p>  
+          <form action="concert">
+            <input type="hidden" name=concertID value={{this.dataValues.concert_id}}>
+            <input type="hidden" name=userID value={{this.dataValues.user_id}}>
+            <button type="submit" class="waves-effect waves-light btn">Yes!</button>
           </form>
         </div>
       {{/each}}
     </ul>
   </div>
-
-
-    <form class="submit-form" action="matches">
-      <button type="submit" class="waves-effect waves-light btn orange z-depth-4">Show me who else is going!</button>
-    </form>  
-
 </div>
