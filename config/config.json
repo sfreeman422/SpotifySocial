@@ -1,8 +1,8 @@
 {
   "development": {
     "use_env_variable":"JawsDB_URL",
-    "username": "i3b9ap8bwgfvxiol",
-    "password": "r1exb2akc57ww5vz",
+    "username": "yzjrmvzogyzsd3a5",
+    "password": "ata9p03k76songmt",
     "database": "spotifysocial",
     "host": "tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
@@ -16,8 +16,8 @@
   },
   "production": {
     "use_env_variable":"JawsDB_URL",
-    "username": "i3b9ap8bwgfvxiol",
-    "password": "r1exb2akc57ww5vz",
+    "username": "yzjrmvzogyzsd3a5",
+    "password": "ata9p03k76songmt",
     "database": "spotifysocial",
     "host": "tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
