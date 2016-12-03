@@ -122,9 +122,9 @@ getInfo();
 
 router.get("/matches", function(req, res){
 	sequelize.query('SELECT * FROM Concerts con1 JOIN Concerts con2 ON con2.concert_id=con1.concert_id WHERE con2.user_id<>con1.user_id AND con2.attending=true AND con1.attending=true', { model: Concerts })
-	.then(function(results){
+	.then(function(result){
 		console.log(results)
-  		res.render('matches', {matches : results});
+  		res.render('matches', {matches : result});
 	});
 	
 });
@@ -136,6 +136,20 @@ router.get("/concerts", function(req, res){
 		console.log(result);
 		res.render("concerts", {concert : result})
 	});
-})
+});
+
+router.put('/update/:id', function(req,res) {
+  models.Concerts.update(
+  {
+    attending: req.body.attending
+  },
+  {
+    where: { id : req.params.id }
+  })
+  .then(function (result) {
+  	console.log(result);
+    res.redirect('/');
+  })
+});
 
 module.exports = router;  
