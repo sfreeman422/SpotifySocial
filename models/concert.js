@@ -2,6 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
 	var Concerts = sequelize.define("Concerts", {
+		user_id: DataTypes.STRING,
 		concert_id: DataTypes.INTEGER,
 		eventDate: DataTypes.DATE,
 		venueName: DataTypes.STRING,
@@ -10,22 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 		ticketURL: DataTypes.STRING
 	}, {
 
-		underscored: true,
 
-		freezeTableName: true,
-
-		tableName: 'Concerts',
-
-		classMethods: {
-			associate: function(models) {
-				Concerts.belongsTo(models.Users, {
-					onDelete: "CASCADE",
-					foreignKey: {
-						allowNull: false
-					}
-				})
-			}
-		}
 	});
 
 	return Concerts;		

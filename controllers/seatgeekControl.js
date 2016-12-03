@@ -17,7 +17,9 @@ var request = require('request');
 
 //Route upon hitting hte seatgeek route. 
 router.get('/:id', function(req, res){
+	var useID = req.params.id
 console.log("SpotifyID is : "+req.params.id);
+
 //STEP ONE:
 //This function is to query the shows based on artist ID.
 //This is where it all starts. 
@@ -83,7 +85,8 @@ function makeRequest(performerQuery){
     		for(var i = 0; i<concertLength; i++){
 
     		models.Concerts
-            .create({ eventName: concert.events[i].title, 
+            .create({ user_id: useID,
+            		  eventName: concert.events[i].title, 
                       concert_id: concert.events[i].id,
                       eventDate: concert.events[i].datetime_local,
                       venueName: concert.events[i].venue.name,

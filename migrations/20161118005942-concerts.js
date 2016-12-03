@@ -5,10 +5,13 @@ module.exports = {
  return queryInterface.createTable(
   'Concerts',
   {
-    concert_id: {
-      type: Sequelize.INTEGER,
+    user_id: {
+      type: Sequelize.STRING,
       primaryKey: true
     }
+    concert_id: {
+      type: Sequelize.INTEGER
+    },
     eventName: {
       type: Sequelize.STRING
     },
