@@ -41,7 +41,7 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.get('/', function(req, res){
-  res.render('concerts');
+  res.redirect('/seatgeek/'+userID);
 });
 
 
