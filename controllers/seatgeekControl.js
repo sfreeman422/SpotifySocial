@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 
+
 //Steps to get this working:
 //1. Hit the '/' route. Status: WORKING
 //2. Initiate getInfo() function to search the database (array currently) for the users top artists Status: WORKING
@@ -14,8 +15,8 @@ var request = require('request');
 //8. Store relevant info in the DB: NEED DB COMMANDS
 
 //Route upon hitting hte seatgeek route. 
-router.get('/', function(req, res){
-
+router.get('/:id', function(req, res){
+console.log("SpotifyID is : "+req.params.id);
 //STEP ONE:
 //This function is to query the shows based on artist ID.
 //This is where it all starts. 
@@ -104,6 +105,8 @@ function makeRequest(performerQuery){
   			console.log(queryURL);
   		}
 	});
+
+	res.render("concerts");
 }
 
 //Kicks it all off. 
