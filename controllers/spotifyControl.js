@@ -5,7 +5,9 @@ var request = require('request');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var models = require('../models');
+var users = require('../models')["Users"];
+
+users.sync({force: true});
 
 // These are our team's  Spotify app credentials.   These should be kept secret by not putting the server.js  file in the public folder.
 var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
@@ -132,11 +134,43 @@ app.get('/callback', function(req, res) {
             };
             console.log(favArtists);
 
-            models.Users.create({
-            user_id: userID,
-            name: userName,
-            email: userEmail
-            });
+
+            users
+            .create({ user_id: userID, 
+                      name: userName,
+                      email: userEmail,
+                      userPic: userPic,
+                      favArtists1: favArtists[0],
+                      favArtists2: favArtists[1],
+                      favArtists3: favArtists[2],
+                      favArtists4: favArtists[3],
+                      favArtists5: favArtists[4],
+                      favArtists6: favArtists[5],
+                      favArtists7: favArtists[6],
+                      favArtists8: favArtists[7],
+                      favArtists9: favArtists[8],
+                      favArtists10: favArtists[9],
+                      favArtists11: favArtists[10],
+                      favArtists12: favArtists[11],
+                      favArtists13: favArtists[12],
+                      favArtists14: favArtists[13],
+                      favArtists15: favArtists[14],
+                      favArtists16: favArtists[15],
+                      favArtists17: favArtists[16],
+                      favArtists18: favArtists[17],
+                      favArtists19: favArtists[18],
+                      favArtists20: favArtists[19],
+                      })
+            .then(function() {
+              users
+                .findOrCreate({where: {email: userEmail}, defaults: {user_id: userID}})
+                .spread(function(user, created) {
+                  console.log(user.get({
+                    plain: true
+                  }))
+                  console.log(created);
+                })
+            })
 
             });
           }
