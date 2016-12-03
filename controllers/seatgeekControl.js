@@ -76,7 +76,7 @@ function makeRequest(performerQuery){
 	var clientSecret = 'zcNRKxkuP2Nej_z4gj1wMZPYU3fA9pAjtCuBZSOC';
 	var concerts = {};
 
-	var queryURL = 'https://api.seatgeek.com/2/events?performers.id='+performerQuery+'&geoip=true&range=100mi&client_id='+clientID+'&client_secret='+clientSecret
+	var queryURL = 'https://api.seatgeek.com/2/events?performers.id='+performerQuery+'&geoip=08876&range=100mi&client_id='+clientID+'&client_secret='+clientSecret
 	console.log(queryURL);
 	request(queryURL, function(err, resp, body){
 		if (!err && resp.statusCode == 200) {
@@ -97,7 +97,7 @@ function makeRequest(performerQuery){
                       venueAddress: concert.events[i].venue.extended_address,
                       artists: concert.events[i].performers[0].short_name,
                       ticketURL: concert.events[i].url,
-                      attendees: null
+                      attendees: 'Bob Kelly, Jonathan Jackson, Ravi Jogee'
                       })
             .then(function() {
               models.Concerts
