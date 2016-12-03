@@ -3,7 +3,7 @@
     "use_env_variable":"JawsDB_URL",
     "username": "yzjrmvzogyzsd3a5",
     "password": "ata9p03k76songmt",
-    "database": "spotifysocial",
+    "database": "pkr9oxdjg3718fl7",
     "host": "tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
@@ -18,7 +18,7 @@
     "use_env_variable":"JawsDB_URL",
     "username": "yzjrmvzogyzsd3a5",
     "password": "ata9p03k76songmt",
-    "database": "spotifysocial",
+    "database": "pkr9oxdjg3718fl7",
     "host": "tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
