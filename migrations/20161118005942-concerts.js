@@ -10,29 +10,15 @@ module.exports = {
       primaryKey: true,
       autoIncrement: true
     }, 
-    eventName: {
-      type: Sequelize.STRING
-    },
-    eventDate: {
-      type: Sequelize.STRING
-    }
-    venueName: {
-      type: Sequelize.STRING
-    },
+    eventName: Sequelize.STRING,
+    eventDate: Sequelize.STRING,
+    venueName: Sequelize.STRING,
     //Needs to be a string, separated by commas. 
-    venueAddress: {
-      type: Sequelize.STRING
-    },
+    venueAddress: Sequelize.STRING,
     //Needs to be a string, separated by commas. 
-    artists: {
-      type: Sequelize.STRING
-    },
-    ticketURL: {
-      type: Sequelize.STRING
-    },
-    attendees: {
-      type: Sequelize.STRING
-    }
+    artists: Sequelize.STRING,
+    ticketURL: Sequelize.STRING,
+    attendees: Sequelize.STRING
   });
 },
 

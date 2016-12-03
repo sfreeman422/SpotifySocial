@@ -8,22 +8,22 @@ module.exports = function(sequelize, DataTypes) {
 		venue: DataTypes.STRING
 	}, {
 
-		// underscored: true,
+		underscored: true,
 
-		// freezeTableName: true,
+		freezeTableName: true,
 
-		// tableName: 'Concerts',
+		tableName: 'concerts',
 
-		// classMethods: {
-		// 	associate: function(models) {
-		// 		Concerts.belongsTo(models.Users, {
-		// 			onDelete: "CASCADE",
-		// 			foreignKey: {
-		// 				allowNull: false
-		// 			}
-		// 		})
-		// 	}
-		// }
+		classMethods: {
+			associate: function(models) {
+				Concerts.belongsTo(models.Users, {
+					onDelete: "CASCADE",
+					foreignKey: {
+						allowNull: false
+					}
+				})
+			}
+		}
 	});
 
 	return Concerts;		
