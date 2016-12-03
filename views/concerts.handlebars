@@ -8,7 +8,7 @@
           <p>{{this.dataValues.venueName}}</p>
           <p>{{this.dataValues.venueAddress}}</p>
           <p>{{this.dataValues.eventDate}}</p>
-          <p>Buy Tickets Here:</p> <a href = {{this.dataValues.ticketURL}}>{{this.dataValues.ticketURL}}</a>
+          <a href = {{this.dataValues.ticketURL}} id="tix">Buy Tickets Here</a>
           <p>Do you wanna go?</p>  
           <form action="concert">
             <input type="hidden" name=concertID value={{this.dataValues.concert_id}}>

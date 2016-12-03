@@ -78,6 +78,9 @@ form{
 .white {
     background-color: white !important;
 }
+#tix{
+  margin: 0 auto;
+}
 .orange {
     background-color: purple !important;
     color: white;
@@ -95,6 +98,7 @@ form{
     width: 75%;
     padding: 10px;
     background: white;
+    text-align: center;
 
 }
 .card-panel {
