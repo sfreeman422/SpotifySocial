@@ -9,15 +9,16 @@
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "spotifysocial",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "use_env_variable":"JawsDB_URL",
+    "username": "i3b9ap8bwgfvxiol",
+    "password": "r1exb2akc57ww5vz",
+    "database": "spotifysocial",
+    "host": "tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
