@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
 	var Concerts = sequelize.define("Concerts", {
 		concert_id: DataTypes.INTEGER,
-		eventDate: DataTypes.DATE,
+		eventDate: DataTypes.DATE,q
 		venueName: DataTypes.STRING,
 		venueAddress: DataTypes.STRING,
 		artists: DataTypes.STRING,

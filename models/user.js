@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
 		user_id: DataTypes.STRING,
 		name: DataTypes.STRING,
 		email: DataTypes.STRING,
-		userPic: DataTypes.STRING,
+		// userPic: DataTypes.STRING,
 		favArtists1: DataTypes.STRING,
 		favArtists2: DataTypes.STRING,
 		favArtists3: DataTypes.STRING,
@@ -28,23 +28,24 @@ module.exports = function(sequelize, DataTypes) {
 		favArtists20: DataTypes.STRING
 	}, {
 
-		// underscored: true,
+		underscored: true,
 
-		// freezeTableName: true,
+		freezeTableName: true,
 
-		// tableName: 'Users',
+		tableName: 'Users',
 
-		// classMethods: {
-		// 	associate: function(models) {
-		// 		Users.hasMany(models.Concerts, {
-		// 			onDelete: "CASCADE",
-		// 			foreignKey: {
-		// 				allowNull: false
-		// 			}
-		// 		})
-		// 	}
-		// }
-	})
+		classMethods: {
+			associate: function(models) {
+				Users.hasMany(models.Concerts, {
+					onDelete: "CASCADE",
+					hooks: true,
+					foreignKey: {
+						allowNull: false
+					}
+				})
+			}
+		}
+	});
 
 	return Users;		
 };

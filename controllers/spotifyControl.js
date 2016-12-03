@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 
 var users = require('../models')["Users"];
 
-users.sync({force: true});
+// users.sync({force: true});
 
 // These are our team's  Spotify app credentials.   These should be kept secret by not putting the server.js  file in the public folder.
 var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
@@ -18,7 +18,6 @@ var redirect_uri = 'http://localhost:3000/profile/callback';
 var userID = "";
 var userName = "";
 var userEmail = "";
-var userPic = [];
 var favArtists = [];
 
 // Generates a random string containing numbers and letters
@@ -112,13 +111,13 @@ app.get('/callback', function(req, res) {
         request.get(options, function(error, response, body) {
           userID = body.id;
           userName = body.display_name;
-          userPic = body.images[0].url;
+          // userPic = body.images[0].url;
           userEmail = body.email;
           
           console.log("user id is " + userID);
           console.log("user name is "+ userName);
           console.log("user's email is " + userEmail);
-          console.log("user's profile pic is " + userPic);
+          // console.log("user's profile pic is " + userPic);
 
           if (!error && response.statusCode === 200) {
 
@@ -139,7 +138,7 @@ app.get('/callback', function(req, res) {
             .create({ user_id: userID, 
                       name: userName,
                       email: userEmail,
-                      userPic: userPic,
+                      // userPic: userPic,
                       favArtists1: favArtists[0],
                       favArtists2: favArtists[1],
                       favArtists3: favArtists[2],
