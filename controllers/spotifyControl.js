@@ -162,24 +162,12 @@ app.get('/callback', function(req, res) {
         });
 
         // redirect the user to the survey page
-        res.redirect('/survey.html'
-        );
+        res.redirect('/survey.html');
       } 
     });
   }
 });
 
-// this route will update the concert with this.id by adding the user's id into
-// that particular concert in the table
-// NEED TO FIGURE OUT HOW TO SEND THIS UPDATE INTO THE CONCERTS TABLE
-app.put('/update/:id', function (req, res) {
-  var condition = 'id = ' + req.params.id;
-
-  console.log('condition', condition);
-
-  concerts.update({ attendees: req.body.userID }, condition, function () {
-  });
-});
 
 // create a /matches route --  this will serve up matches.hbs after the user clicks on the "show me matches" button
 app.get('/matches', function(req, res){
