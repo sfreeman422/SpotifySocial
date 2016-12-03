@@ -94,7 +94,7 @@ function makeRequest(performerQuery){
                       venueAddress: concert.events[i].venue.extended_address,
                       artists: concert.events[i].performers[0].short_name,
                       ticketURL: concert.events[i].url,
-                      attending: false
+                      attendees: null
                       })
             .then(function() {
               models.Concerts
@@ -138,6 +138,18 @@ router.get("/concerts", function(req, res){
 		res.render("concerts", {concert : result})
 	});
 });
+
+router.get("/concert", function(req, res){
+	console.log(req.query);
+	var userid = req.query.userID;
+	var concertid = req.query.concertID; 
+	models.Concerts
+	.findAll({where: {concert_id : concertid}})
+	.then(function(result){
+		console.log(result);
+		res.render("matches", {match: result})
+	})
+})
 
 router.put('/update/:id', function(req,res) {
   models.Concerts.update(
