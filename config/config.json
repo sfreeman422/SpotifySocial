@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
+    "use_env_variable":"JawsDB_URL",
+    "username": "i3b9ap8bwgfvxiol",
+    "password": "r1exb2akc57ww5vz",
     "database": "spotifysocial",
-    "host": "localhost",
+    "host": "tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
