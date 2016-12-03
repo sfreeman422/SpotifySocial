@@ -3,7 +3,7 @@
   <div class="container">
     <ul>
       {{#each concert}}
-        <div class="card white">
+        <div class="concert-card">
           <p>{{this.dataValues.eventName}}</p>
           <p>{{this.dataValues.venueName}}</p>
           <p>{{this.dataValues.venueAddress}}</p>
@@ -19,9 +19,9 @@
     </ul>
   </div>
 
-  <div class="container">
+
     <form class="submit-form" action="../matches">
       <button type="submit" class="waves-effect waves-light btn orange z-depth-4">Show me who else is going!</button>
     </form>  
-  </div>
+
 </div>
