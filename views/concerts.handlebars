@@ -3,13 +3,13 @@
   <div class="container">
     <ul>
       {{#each concert}}
-        <div class="card orange">
+        <div class="card white">
           <p>{{this.dataValues.eventName}}</p>
           <p>{{this.dataValues.venueName}}</p>
           <p>{{this.dataValues.venueAddress}}</p>
           <p>{{this.dataValues.eventDate}}</p>
           <p>Buy Tickets Here: {{this.dataValues.ticketURL}}</p>
-          <h2>Do you wanna go?</h2>  
+          <h6>Do you wanna go?</h6>  
           <form action="update/{{this.id}}?_method=PUT" method="POST">
             <input type="hidden" name="attending" value="true">
             <button type="submit" class="waves-effect waves-light btn orange z-depth-4">Yes!</button>
