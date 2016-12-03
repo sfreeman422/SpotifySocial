@@ -121,7 +121,7 @@ getInfo();
 });
 
 router.get("/matches", function(req, res){
-	sequelize.query('SELECT * FROM Concerts con1 JOIN Concerts con2 ON con2.concert_id=con1.concert_id AND con2.attending=con1.attending WHERE con2.user_id<>con1.user_id', { model: Concerts })
+	sequelize.query('SELECT * FROM Concerts con1 JOIN Concerts con2 ON con2.concert_id=con1.concert_id WHERE con2.user_id<>con1.user_id AND con2.attending=true AND con1.attending=true', { model: Concerts })
 	.then(function(results){
 		console.log(results)
   		res.render('matches', {matches : results});
