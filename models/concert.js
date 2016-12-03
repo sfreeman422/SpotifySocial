@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
 
 		freezeTableName: true,
 
-		tableName: 'concerts',
+		tableName: 'Concerts',
 
 		classMethods: {
 			associate: function(models) {
