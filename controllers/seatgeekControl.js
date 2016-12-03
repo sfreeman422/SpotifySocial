@@ -33,7 +33,7 @@ function getInfo(){
 //This function delcaration is to grab the ID for the artist by searching by artist name. 
 var getID = new Promise(function (resolve, reject){
 	//This will eventually be data pulled from the users top 20 artists. 
-	var performers = ['coldplay', 'bon iver','radiohead','justin beiber','band of horses'];
+	var performers = ['young thug', 'the blood brothers','against me','off with their heads','woe is me'];
 	var nospace = [];
 	//This should resolve the spaces vs dashes issue. 
 	for(var d = 0; d < performers.length; d++){
