@@ -26,7 +26,7 @@ module.exports = {
     //Needs to be a string, separated by commas. 
     artists: Sequelize.STRING,
     ticketURL: Sequelize.STRING,
-    attendees: Sequelize.STRING
+    attending: {type: Sequelize.BOOLEAN, default: false},
   });
 },
 

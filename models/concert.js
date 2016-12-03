@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
 		venueAddress: DataTypes.STRING,
 		artists: DataTypes.STRING,
 		ticketURL: DataTypes.STRING,
-		attendees: DataTypes.STRING
+		attending: { type: DataTypes.BOOLEAN, defaultValue: false }
 	}, {
 
 

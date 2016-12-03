@@ -93,7 +93,7 @@ function makeRequest(performerQuery){
                       venueAddress: concert.events[i].venue.extended_address,
                       artists: concert.events[i].performers[0].short_name,
                       ticketURL: concert.events[i].url,
-                      attendees: ""
+                      attending: false
                       })
             .then(function() {
               models.Concerts
@@ -121,8 +121,13 @@ getInfo();
 });
 
 router.get("/matches", function(req, res){
-	res.render('matches');
-})
+	sequelize.query('SELECT * FROM Concerts con1 JOIN Concerts con2 ON con2.concert_id=con1.concert_id AND con2.attending=con1.attending WHERE con2.user_id<>con1.user_id', { model: Concerts })
+	.then(function(results){
+		console.log(results)
+  		res.render('matches', {matches : results});
+	});
+	
+});
 
 router.get("/concerts", function(req, res){
 	models.Concerts
