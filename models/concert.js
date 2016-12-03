@@ -2,28 +2,30 @@
 
 module.exports = function(sequelize, DataTypes) {
 	var Concerts = sequelize.define("Concerts", {
-		artist_id: DataTypes.INTEGER,
-		artist: DataTypes.STRING,
-		eventName: DataTypes.STRING,
-		venue: DataTypes.STRING
+		concert_id: DataTypes.INTEGER,
+		eventDate: DataTypes.DATE,q
+		venueName: DataTypes.STRING,
+		venueAddress: DataTypes.STRING,
+		artists: DataTypes.STRING,
+		ticketURL: DataTypes.STRING
 	}, {
 
-		underscored: true,
+		// underscored: true,
 
-		freezeTableName: true,
+		// freezeTableName: true,
 
-		tableName: 'Concerts',
+		// tableName: 'Concerts',
 
-		classMethods: {
-			associate: function(models) {
-				Concerts.belongsTo(models.Users, {
-					onDelete: "CASCADE",
-					foreignKey: {
-						allowNull: false
-					}
-				})
-			}
-		}
+		// classMethods: {
+		// 	associate: function(models) {
+		// 		Concerts.belongsTo(models.Users, {
+		// 			onDelete: "CASCADE",
+		// 			foreignKey: {
+		// 				allowNull: false
+		// 			}
+		// 		})
+		// 	}
+		// }
 	});
 
 	return Concerts;		

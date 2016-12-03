@@ -1,5 +1,5 @@
 // This is the code to authenticate against Spotify accounts, and to pull a Spotify user's top artists.
-
+var models = require('../models');
 var express = require('express');
 var request = require('request');
 var querystring = require('querystring');

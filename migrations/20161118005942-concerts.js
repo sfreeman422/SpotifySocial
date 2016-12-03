@@ -5,14 +5,19 @@ module.exports = {
  return queryInterface.createTable(
   'Concerts',
   {
-    id: {
+    concert_id: {
       type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    }, 
-    eventName: Sequelize.STRING,
-    eventDate: Sequelize.STRING,
-    venueName: Sequelize.STRING,
+      primaryKey: true
+    }
+    eventName: {
+      type: Sequelize.STRING
+    },
+    eventDate: {
+      type: Sequelize.STRING
+    }
+    venueName: {
+      type: Sequelize.STRING
+    },
     //Needs to be a string, separated by commas. 
     venueAddress: Sequelize.STRING,
     //Needs to be a string, separated by commas. 
