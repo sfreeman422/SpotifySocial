@@ -2,6 +2,7 @@ var models = require('../models');
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+// var concerts = require('../models')["Concerts"];
 
 
 //Steps to get this working:
@@ -30,7 +31,7 @@ function getInfo(){
 //This function delcaration is to grab the ID for the artist by searching by artist name. 
 var getID = new Promise(function (resolve, reject){
 	//This will eventually be data pulled from the users top 20 artists. 
-	var performers = ['against me', 'bad religion', 'grouplove', 'young thug', 'taylor swift', 'justin beiber'];
+	var performers = ['coldplay', 'bon iver','radiohead','justin beiber','band of horses'];
 	var nospace = [];
 	//This should resolve the spaces vs dashes issue. 
 	for(var d = 0; d < performers.length; d++){
@@ -78,26 +79,50 @@ function makeRequest(performerQuery){
 		if (!err && resp.statusCode == 200) {
     		var concert = JSON.parse(body);
     		var concertLength = concert.events.length;
+
     		for(var i = 0; i<concertLength; i++){
-	    		console.log("Concert"+i+" is: ");
-	    		console.log("===========================");
-	    		//Accounted for in DB. 
-	    		console.log("Concert Name: "+concert.events[i].title);
-	    		//Accounted for in DB. 
-	    		console.log("Concert Date: "+concert.events[i].datetime_local);
-	    		//Accounted for in DB. NEEDS TO BE A STRING SEPRATED BY COMMAS
-	    		console.log("Performers are: ");
-	    		for(var j = 0; j< concert.events[i].performers.length; j++){
-	    			console.log(concert.events[i].performers[j].short_name);
-	    		}
-	    		console.log("Venue Information: ");
-	    		//Accounted for in DB.
-	    		console.log("Venue Name: "+concert.events[i].venue.name);
-	    		//Accounted for in DB. NEED TO BE SEPARATED BY COMMAS
-	    		console.log("Venue Address: "+concert.events[i].venue.address);
-	    		console.log("Venue City/State: "+concert.events[i].venue.extended_address);
-	    		//Account for in DB. 
-	    		console.log("Buy Tickets: "+concert.events[i].url)
+
+    		models.Concerts
+            .create({ eventName: concert.events[i].title, 
+                      concert_id: concert.events[i].id,
+                      eventDate: concert.events[i].datetime_local,
+                      venueName: concert.events[i].venue.name,
+                      venueAddress: concert.events[i].venue.extended_address,
+                      artists: concert.events[i].performers[0].short_name,
+                      ticketURL: concert.events[i].url
+                      })
+            .then(function() {
+              models.Concerts
+                .findOrCreate({where: {eventName: concerts.events[i].title}, defaults: {concert_id: concerts.events[i].id}})
+                .spread(function(concert, created) {
+                  console.log(concert.get({
+                    plain: true
+                  }))
+                  console.log(created);
+                })
+            })
+
+
+	    		// console.log("Concert"+i+" is: ");
+	    		// console.log("===========================");
+	    		// //Accounted for in DB. 
+	    		// console.log("Concert Name: "+concert.events[i].title);
+
+	    		// //Accounted for in DB. 
+	    		// console.log("Concert Date: "+concert.events[i].datetime_local);
+	    		// //Accounted for in DB. NEEDS TO BE A STRING SEPRATED BY COMMAS
+	    		// console.log("Performers are: ");
+	    		// for(var j = 0; j< concert.events[i].performers.length; j++){
+	    		// 	console.log(concert.events[i].performers[j].short_name);
+	    		// }
+	    		// console.log("Venue Information: ");
+	    		// //Accounted for in DB.
+	    		// console.log("Venue Name: "+concert.events[i].venue.name);
+	    		// //Accounted for in DB. NEED TO BE SEPARATED BY COMMAS
+	    		// console.log("Venue Address: "+concert.events[i].venue.address);
+	    		// console.log("Venue City/State: "+concert.events[i].venue.extended_address);
+	    		// //Account for in DB. 
+	    		// console.log("Buy Tickets: "+concert.events[i].url)
     		}
   		}
   		else{
