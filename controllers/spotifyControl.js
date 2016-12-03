@@ -40,7 +40,7 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.get('/', function(req, res){
-  res.redirect('/seatgeek/'+userID);
+  res.redirect('/seatgeek/getconcerts/'+userID);
 });
 
 

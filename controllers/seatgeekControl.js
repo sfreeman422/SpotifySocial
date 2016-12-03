@@ -16,7 +16,7 @@ var request = require('request');
 //8. Store relevant info in the DB: NEED DB COMMANDS
 
 //Route upon hitting hte seatgeek route. 
-router.get('/:id', function(req, res){
+router.get('/getconcerts/:id', function(req, res){
 	var useID = req.params.id
 console.log("SpotifyID is : "+req.params.id);
 
@@ -141,5 +141,9 @@ function makeRequest(performerQuery){
 getInfo();
 
 });
+
+router.get("/matches", function(req, res){
+	res.render("matches");
+})
 
 module.exports = router;  
