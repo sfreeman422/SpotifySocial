@@ -123,7 +123,7 @@ app.get('/callback', function(req, res) {
 
             // use the access token to access the Spotify Web API for a user's top artists
             request.get({
-              url: 'https://api.spotify.com/v1/me/top/artists?limit=20&offset=0&time_range=medium_term',
+              url: 'https://api.spotify.com/v1/me/top/artists?limit=5&offset=0&time_range=medium_term',
               headers: { 'Authorization': 'Bearer ' + access_token },
               json: true
             }, function(error, response, body) {
@@ -143,22 +143,7 @@ app.get('/callback', function(req, res) {
                       favArtists2: favArtists[1],
                       favArtists3: favArtists[2],
                       favArtists4: favArtists[3],
-                      favArtists5: favArtists[4],
-                      favArtists6: favArtists[5],
-                      favArtists7: favArtists[6],
-                      favArtists8: favArtists[7],
-                      favArtists9: favArtists[8],
-                      favArtists10: favArtists[9],
-                      favArtists11: favArtists[10],
-                      favArtists12: favArtists[11],
-                      favArtists13: favArtists[12],
-                      favArtists14: favArtists[13],
-                      favArtists15: favArtists[14],
-                      favArtists16: favArtists[15],
-                      favArtists17: favArtists[16],
-                      favArtists18: favArtists[17],
-                      favArtists19: favArtists[18],
-                      favArtists20: favArtists[19],
+                      favArtists5: favArtists[4]
                       })
             .then(function() {
               users
