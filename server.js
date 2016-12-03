@@ -13,7 +13,7 @@ var queryString = require('querystring');
 var sequelize = require('sequelize');
 var mysql = require('mysql');
 var models = require('./models');
-var port = 3000 || process.env.PORT; 
+var port = process.env.PORT || 3000; 
 
 //Controllers
 var mainControl = require('./controllers/mainControl.js');
