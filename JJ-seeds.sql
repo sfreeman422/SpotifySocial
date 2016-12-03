@@ -1,0 +1,23 @@
+
+-- 1. -- change the ID's of each entry to something high,  so you don't conflict with another user already in the database
+-- Jonathan's dummy users started with id 100
+-- Harika's dummy users start with id 200
+-- David dummy users start with id 300
+-- Steven start with id 400
+
+-- 2.  scroll to the right where the VALUES Start ---  and paste in your  favArtists1  through favArtists20
+
+-- 3.   change the id for your five seed entries,  change the user_id,  change the name,  the email,  and the userPic URL  (or set any one of those to null if you want)
+
+-- 4.  These five dummy users will all have the same favArtists as you do --  and will be matches for you in Concert Connect.
+
+
+INSERT INTO users (id, user_id, name, email, userPic, favArtists1, favArtists2, favArtists3, favArtists4, favArtists5, favArtists6, favArtists7, favArtists8, favArtists9, favArtists10, favArtists11, favArtists12, favArtists13, favArtists14, favArtists15, favArtists16, favArtists17, favArtists18, favArtists19, favArtists20, createdAt, updatedAt) VALUES (100, "matt56", null, 'matt56@concertconnect.com', 'mattspic@mattswebsite.com', 'Shawn Mendes', 'Kyle Dixon', 'Jason Isbell', 'Radiohead', 'Justin Bieber', 'Drive-By Truckers', 'Future Sound Of Ibiza', 'Arthur Russell', 'Helios', 'Band of Horses', 'Nick Jonas', 'Bill Evans', 'Jóhann Jóhannsson', 'Árstíðir', 'Iron & Wine', 'Kendrick Lamar', 'Bon Iver', 'Keith Jarrett', 'Max Richter', 'Coldplay', '2016-12-03 01:46:56', '2016-12-03 01:46:56');
+
+INSERT INTO users (id, user_id, name, email, userPic, favArtists1, favArtists2, favArtists3, favArtists4, favArtists5, favArtists6, favArtists7, favArtists8, favArtists9, favArtists10, favArtists11, favArtists12, favArtists13, favArtists14, favArtists15, favArtists16, favArtists17, favArtists18, favArtists19, favArtists20, createdAt, updatedAt) VALUES (101, "steve33", null, 'steve33@concertconnect.com', 'mattspic@mattswebsite.com', 'Shawn Mendes', 'Kyle Dixon', 'Jason Isbell', 'Radiohead', 'Justin Bieber', 'Drive-By Truckers', 'Future Sound Of Ibiza', 'Arthur Russell', 'Helios', 'Band of Horses', 'Nick Jonas', 'Bill Evans', 'Jóhann Jóhannsson', 'Árstíðir', 'Iron & Wine', 'Kendrick Lamar', 'Bon Iver', 'Keith Jarrett', 'Max Richter', 'Coldplay', '2016-12-03 01:46:56', '2016-12-03 01:46:56');
+
+INSERT INTO users (id, user_id, name, email, userPic, favArtists1, favArtists2, favArtists3, favArtists4, favArtists5, favArtists6, favArtists7, favArtists8, favArtists9, favArtists10, favArtists11, favArtists12, favArtists13, favArtists14, favArtists15, favArtists16, favArtists17, favArtists18, favArtists19, favArtists20, createdAt, updatedAt) VALUES (102, "mark5", null, 'mark5@concertconnect.com', 'mattspic@mattswebsite.com', 'Shawn Mendes', 'Kyle Dixon', 'Jason Isbell', 'Radiohead', 'Justin Bieber', 'Drive-By Truckers', 'Future Sound Of Ibiza', 'Arthur Russell', 'Helios', 'Band of Horses', 'Nick Jonas', 'Bill Evans', 'Jóhann Jóhannsson', 'Árstíðir', 'Iron & Wine', 'Kendrick Lamar', 'Bon Iver', 'Keith Jarrett', 'Max Richter', 'Coldplay', '2016-12-03 01:46:56', '2016-12-03 01:46:56');
+
+INSERT INTO users (id, user_id, name, email, userPic, favArtists1, favArtists2, favArtists3, favArtists4, favArtists5, favArtists6, favArtists7, favArtists8, favArtists9, favArtists10, favArtists11, favArtists12, favArtists13, favArtists14, favArtists15, favArtists16, favArtists17, favArtists18, favArtists19, favArtists20, createdAt, updatedAt) VALUES (103, "eric89", null, 'eric89@concertconnect.com', 'mattspic@mattswebsite.com', 'Shawn Mendes', 'Kyle Dixon', 'Jason Isbell', 'Radiohead', 'Justin Bieber', 'Drive-By Truckers', 'Future Sound Of Ibiza', 'Arthur Russell', 'Helios', 'Band of Horses', 'Nick Jonas', 'Bill Evans', 'Jóhann Jóhannsson', 'Árstíðir', 'Iron & Wine', 'Kendrick Lamar', 'Bon Iver', 'Keith Jarrett', 'Max Richter', 'Coldplay', '2016-12-03 01:46:56', '2016-12-03 01:46:56');
+
+INSERT INTO users (id, user_id, name, email, userPic, favArtists1, favArtists2, favArtists3, favArtists4, favArtists5, favArtists6, favArtists7, favArtists8, favArtists9, favArtists10, favArtists11, favArtists12, favArtists13, favArtists14, favArtists15, favArtists16, favArtists17, favArtists18, favArtists19, favArtists20, createdAt, updatedAt) VALUES (104, "miles3", null, 'miles3@concertconnect.com', 'mattspic@mattswebsite.com', 'Shawn Mendes', 'Kyle Dixon', 'Jason Isbell', 'Radiohead', 'Justin Bieber', 'Drive-By Truckers', 'Future Sound Of Ibiza', 'Arthur Russell', 'Helios', 'Band of Horses', 'Nick Jonas', 'Bill Evans', 'Jóhann Jóhannsson', 'Árstíðir', 'Iron & Wine', 'Kendrick Lamar', 'Bon Iver', 'Keith Jarrett', 'Max Richter', 'Coldplay', '2016-12-03 01:46:56', '2016-12-03 01:46:56');

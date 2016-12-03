@@ -85,11 +85,14 @@ function makeRequest(performerQuery){
 
     		for(var i = 0; i<concertLength; i++){
 
+    			var eventDate = JSON.stringify(concert.events[i].datetime_local);
+    			eventDate = eventDate.slice(0, -15);
+
     		models.Concerts
             .create({ user_id: useID,
             		  eventName: concert.events[i].title, 
                       concert_id: concert.events[i].id,
-                      eventDate: concert.events[i].datetime_local,
+                      eventDate: eventDate,
                       venueName: concert.events[i].venue.name,
                       venueAddress: concert.events[i].venue.extended_address,
                       artists: concert.events[i].performers[0].short_name,
