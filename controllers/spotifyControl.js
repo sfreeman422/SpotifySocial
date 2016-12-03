@@ -12,7 +12,7 @@ var users = require('../models')["Users"];
 // These are our team's  Spotify app credentials.   These should be kept secret by not putting the server.js  file in the public folder.
 var client_id = '7e460edc49e64d138a8f87bd87cfdc1c';
 var client_secret = '23324134048446d6a40c8599dd00ab2d';  
-var redirect_uri = 'http://localhost:3000/profile/callback';
+var redirect_uri = 'https://shrouded-refuge-38902.herokuapp.com/profile/callback';
 
 // setting up global variables for user profile info.  Each of these comes from a user's Spotify account info.
 var userID = "";
