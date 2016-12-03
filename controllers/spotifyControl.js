@@ -177,7 +177,7 @@ app.put('/update/:id', function (req, res) {
 
   console.log('condition', condition);
 
-  concerts.update({ attendees: req.body.userID }, condition, function () {
+  Concerts.update({ attendees: req.body.userID }, condition, function () {
   });
 });
 
