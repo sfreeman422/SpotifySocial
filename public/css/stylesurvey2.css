@@ -32,6 +32,7 @@ nav .nav-wrapper {
     margin-top: 20px;
 }
 .row {
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -85,11 +86,22 @@ h6{
     width: 100%;
     height: 20%;
 }
+
+.concert-card {
+    margin: auto;
+    margin-top: 25px;
+    width: 75%;
+    padding: 10px;
+    background: white;
+
+}
 .card-panel {
   padding: 20px;
   margin: 2% 8% 2% 8%;
 }
 .container {
+    position: relative;
+    margin-top: 10px;
     max-width: 2000px;
     margin: 0;
 }
