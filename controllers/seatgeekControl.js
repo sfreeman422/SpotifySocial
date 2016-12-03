@@ -92,7 +92,8 @@ function makeRequest(performerQuery){
                       venueName: concert.events[i].venue.name,
                       venueAddress: concert.events[i].venue.extended_address,
                       artists: concert.events[i].performers[0].short_name,
-                      ticketURL: concert.events[i].url
+                      ticketURL: concert.events[i].url,
+                      attendees: ""
                       })
             .then(function() {
               models.Concerts
@@ -104,37 +105,14 @@ function makeRequest(performerQuery){
                   console.log(created);
                 })
             })
-
-
-	    		// console.log("Concert"+i+" is: ");
-	    		// console.log("===========================");
-	    		// //Accounted for in DB. 
-	    		// console.log("Concert Name: "+concert.events[i].title);
-
-	    		// //Accounted for in DB. 
-	    		// console.log("Concert Date: "+concert.events[i].datetime_local);
-	    		// //Accounted for in DB. NEEDS TO BE A STRING SEPRATED BY COMMAS
-	    		// console.log("Performers are: ");
-	    		// for(var j = 0; j< concert.events[i].performers.length; j++){
-	    		// 	console.log(concert.events[i].performers[j].short_name);
-	    		// }
-	    		// console.log("Venue Information: ");
-	    		// //Accounted for in DB.
-	    		// console.log("Venue Name: "+concert.events[i].venue.name);
-	    		// //Accounted for in DB. NEED TO BE SEPARATED BY COMMAS
-	    		// console.log("Venue Address: "+concert.events[i].venue.address);
-	    		// console.log("Venue City/State: "+concert.events[i].venue.extended_address);
-	    		// //Account for in DB. 
-	    		// console.log("Buy Tickets: "+concert.events[i].url)
     		}
   		}
   		else{
   			console.log(err);
   			console.log(queryURL);
   		}
+  		res.redirect("../concerts")
 	});
-
-	res.render("concerts");
 }
 
 //Kicks it all off. 
@@ -144,6 +122,15 @@ getInfo();
 
 router.get("/matches", function(req, res){
 	res.render('matches');
+})
+
+router.get("/concerts", function(req, res){
+	models.Concerts
+	.findAll()
+	.then(function(result){
+		console.log(result);
+		res.render("concerts", {concert : result})
+	});
 })
 
 module.exports = router;  
