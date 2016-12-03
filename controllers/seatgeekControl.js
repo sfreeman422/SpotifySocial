@@ -2,7 +2,8 @@ var models = require('../models');
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-// var concerts = require('../models')["Concerts"];
+var sequelize = require('sequelize');
+//var concerts = require('../models')["Concerts"];
 
 
 //Steps to get this working:
